@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @advocate.name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @advocate.company %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @advocate.email %>
+</p>
+
+<p>
+  <strong>Ref email:</strong>
+  <%= @advocate.ref_email %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @advocate.note %>
+</p>
+
+<%= link_to 'Edit', edit_advocate_path(@advocate) %> |
+<%= link_to 'Back', advocates_path %>

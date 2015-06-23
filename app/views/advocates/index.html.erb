@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Advocates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Company</th>
+      <th>Email</th>
+      <th>Ref email</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advocates.each do |advocate| %>
+      <tr>
+        <td><%= advocate.name %></td>
+        <td><%= advocate.company %></td>
+        <td><%= advocate.email %></td>
+        <td><%= advocate.ref_email %></td>
+        <td><%= advocate.note %></td>
+        <td><%= link_to 'Show', advocate %></td>
+        <td><%= link_to 'Edit', edit_advocate_path(advocate) %></td>
+        <td><%= link_to 'Destroy', advocate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advocate', new_advocate_path %>

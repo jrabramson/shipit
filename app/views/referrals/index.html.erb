@@ -1,0 +1,80 @@
+<%- model_class = Referral -%>
+<style type="text/css">
+  #progress {
+    height: <%= @progress.amount %>px;
+  }
+</style>
+<h3 class="ref_title"> <img src="assets/infl.png">Send Truman a Referral! </h3>
+<div class="row page-overview">
+  <div class="col-md-9 col-centered">
+      <div class="advocate">
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/TSrnpcEZqx0" frameborder="0" allowfullscreen></iframe><br>
+
+         <% @referrals.each do |referral| %>
+
+           <h4><%= referral.name %></h3><br>
+           <p><strong>I’m really good at</strong>: Super-powering brands’ positive word of mouth by activating their best customers. (<a href="#">See some of our success stories here!</a>)</p>
+
+          <p><strong>I’m seeking</strong>: Forward-thinking, B2B marketers at mid-sized companies, looking to grow their business. </p>
+
+          <p><strong>First date</strong>: I like to send an email to my referrals (and cc you). Then I offer them a personalized advocacy consultation, and give them a call.</p>
+
+         <% end %>
+       </div>
+         <div id="progress-bar">
+           <span class="goal"> 50 </span>
+           <div class="progress-mark mark-1"></div>
+           <div class="progress-mark mark-2"></div>
+           <div id="progress"></div>
+         </div>
+         <div id="float_box">
+           <a href="#"><img src="assets/facebook.jpg"></a><br>
+           <a href="#"><img src="assets/twitter.jpg"></a><br>
+           <a href="#"><img src="assets/google.jpg"></a><br>
+           <a href="#"><img src="assets/linkdin.jpg"></a><br>
+           <h2> 19 </h2>
+           <h5> Days to go </h5>
+           <h2 id="backers"> 26 </h2>
+           <h5> Supporters </h5>
+         </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-centered light">
+    <div id="success"></div>
+  <%= form_for(@advocate, remote: true, id: "ref_form") do |f| %>
+    <% if @advocate.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@advocate.errors.count, "error") %> prohibited this advocate from being saved:</h2>
+
+        <ul>
+        <% @advocate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<div class="row footer">
+    <div class="col-md-6">
+      <div class="field"><%= f.text_field :name, { placeholder: "Their Name" } %></div><br>
+      <div class="field"><%= f.text_field :company, { placeholder: "Their Company" } %></div><br>
+      <div class="field"><%= f.text_field :email, { placeholder: "Their Email" } %></div><br>
+      <div class="field"><%= f.text_area :note, { placeholder: "Notes", class: "notes_area" } %></div><br>
+      <div class="field"><%= f.text_field :ref_email, { placeholder: "Your Email" } %></div><br>
+      <div class="field"><%= f.submit "Share the Love!" %></div>
+    </div>
+
+    <div class="col-md-6">
+      <h3> Rewards </h3>
+      <p class="reward"><img src="assets/money.png"><strong>50 Referrals</strong><br> All referrees receive $100</p>
+      <p class="reward"><img src="assets/giftcard.png"><strong>Closed Deals</strong><br> $200 restaurant gift card</p>
+    </div>
+</div>
+
+  <% end %>
+<script>
+    var supps = 26;
+</script>
