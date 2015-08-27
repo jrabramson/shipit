@@ -1,0 +1,17 @@
+#new_contact {
+	input[type=text], input[type=email], input[type=password] {
+		padding: 10px;
+		border: none;
+		border-bottom: solid 2px #c9c9c9;
+		transition: border 0.3s;
+		width: 300px;
+		outline: 0;
+		&:focus {
+		  border-bottom: solid 2px #969696;
+		}
+	}
+	input[type=submit] {
+	    border: none;
+	    background-color: white;
+	}
+}
