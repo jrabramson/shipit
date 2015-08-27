@@ -1,0 +1,15 @@
+<div class='container'>
+	<div class='manage_table'>
+		<h2>My Campaigns</h2>
+		<div class='table_header'> 
+		  <span></span>
+		  <span> Title </span>
+		  <span> Progess/Goal </span>
+		  <span> Expiry </span>
+		  <span> </span>
+		</div>
+		<% @campaigns.each do |campaign| %>
+			<%= react_component 'Campaign', { data: campaign, refs: campaign.referrals, icon: campaign.campaign_media } %>
+		<% end %>
+	</div>
+</div>

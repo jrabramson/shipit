@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :advocates
-  resources :referrals
-  root 'referrals#index'
+  mount Ckeditor::Engine => '/ckeditor'
+  root to: 'campaigns#index'
+  
+  devise_for :contacts, :controllers => { registrations: 'registrations' }
+  resources :contacts
+  resources :campaigns do
+    resources :referrals
+  end
+
+  get '/manage', to: 'campaigns#manage'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

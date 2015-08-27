@@ -1,8 +1,21 @@
 source 'https://rubygems.org'
 
-gem "therubyracer"
-gem "less-rails"
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'gritter', :git => 'https://github.com/emn178/gritter.git'
+gem 'react-rails'
+gem 'devise'
+gem 'paperclip'
+gem 'nested_form'
+gem 'delayed_job_active_record'
+gem 'daemons'
+gem 'faraday'
+gem 'pry-remote'
+gem 'auto_html'
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'jquery-ui-rails'
+
+gem 'therubyracer'
+# gem 'less-rails'
+# gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem 'spinjs-rails'
 

@@ -1,0 +1,95 @@
+nav {
+	background: white;
+	/*float: left;*/
+	width: 100%;
+	border-bottom: 1px solid black;
+	/*margin-bottom: 10px;*/
+	align-items: center;
+	.title {
+		font-family: 'Montserrat', sans-serif;
+	    font-weight: 700;
+	    font-size: 26px;
+        line-height: 23px;
+	    margin: 12px 20px;
+	    text-transform: uppercase;;
+	    display: inline-block;
+	    span:first-of-type{
+	    	color: #fab515;
+	    	font-weight: normal;
+	    	display: block;
+	    	font-family: 'Oleo Script', cursive;
+	    	text-transform: none;
+	    	font-size: 42px;
+	    	transform: rotate(-3deg);
+	    	position: relative;
+	    	left: -5px;
+	    	top: -1px;
+    }
+	}
+	a  {
+		float: left;
+		img {
+			display: inline-block;
+		}
+	}
+	ul {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		li {
+			display: inline-block;
+			padding: 5px 10px;
+			a{
+				padding: 20px 15px;
+			}
+		}
+	}
+	.main_nav {
+		li {
+			a {
+				font-size: 16px;
+				&:hover {
+					color: #fab515;
+				}
+			}
+		}
+	}
+	.personal-nav {
+		float: right;
+		#profile {
+			height: 100%;
+			padding: 5px 10px;
+			/*border-left: 1px solid black;*/
+			z-index: 2;
+			position: relative;
+			background-color: white;
+			outline: 0;
+			img { 
+				height: 50px;
+				width: 50px;
+				border-radius: 50%;
+			}
+		}
+		.profile_nav {
+		    position: absolute;
+		    right: 0;
+		    padding: 0;
+		    top: 73px;
+		    width: 150px;
+		    background: white;
+		    border-left: 1px solid black;
+		    border-top: 1px solid black;
+		    border-bottom: 1px solid black;
+		    z-index: 1;
+		    li {
+		    	width: 100%;
+		    	a {
+		    		padding: 0;
+		    	}
+		    	&:not(.bar):hover {
+		    		background-color: #fab515;
+		    	}
+		    }
+		}
+	}
+}

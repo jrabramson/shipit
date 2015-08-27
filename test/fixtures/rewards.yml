@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  title: MyString
+  icon: 
+  description: MyText
+  milestone: 1
+
+two:
+  type: 
+  title: MyString
+  icon: 
+  description: MyText
+  milestone: 1

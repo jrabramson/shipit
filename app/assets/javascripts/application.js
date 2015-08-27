@@ -14,11 +14,46 @@
 //= require jquery_ujs
 //= require spin
 //= require jquery.spin
-//= require twitter/bootstrap
+//= require gritter
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require ckeditor/init
+//= require jquery_nested_form
+//= require jquery-ui
+//= require components
 //= require_tree .
 
-$(document).ready(function(){
-  $('#progress-bar').height($('.advocate').height());
-  var backers = 26;
+$(document).ajaxError(function(event, request) {
+  var msg = request.responseText;
+  if (msg) msg.split(",").forEach(function(e) {
+  	$.gritter.add({ title: 'Error', text: e });
+  })
 });
+
+$(document).ajaxSuccess(function(event, request) {
+  var msg = JSON.parse(request.responseText);
+  if (msg) {
+  	$.gritter.add({ title: 'Success', text: msg.status });
+    currentProgress++;
+  	getProgress();
+  	$('#new_referral')[0].reset();
+  }
+});
+
+var ready;
+ready = function() {
+	$('#profile').click(function(e) {
+		e.preventDefault;
+    $('.profile_nav').toggleClass('zoomOutRight');
+    $('.profile_nav').toggleClass('zoomInRight');
+    $('.nav-choice').toggleClass('fa-arrow-down');
+		$('.nav-choice').toggleClass('fa-arrow-up');
+	});
+   $("#tabs").tabs();
+}
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
+
+

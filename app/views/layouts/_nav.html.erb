@@ -1,0 +1,25 @@
+
+<nav class='clearfix'>
+  <%= link_to root_url do %>
+    <span class='title'>
+      <span>Lead</span>
+      <span>Starter</span>
+    </span>
+  <% end %>
+
+  <div class="personal-nav">
+      <% if contact_signed_in? then %>
+        <a href='#' id='profile'><i class='nav-choice fa fa-arrow-down'></i><%= image_tag(current_contact.nav_avatar, class: 'profile') %></a>
+        <ul class='profile_nav animated zoomOutRight'>
+          <li><%= link_to "Profile", current_contact %></a></li>
+          <li><%= link_to "My Campaigns", manage_path %></li>
+          <li> <%= link_to "New Campaign", new_campaign_path %></li>
+          <li class='bar'><hr></li>
+          <li><a href='#'>Log Out</a></li>
+        </ul>
+      <% else %>
+       	<%= link_to "Sign up", new_contact_registration_path %><br />
+        <%= link_to "Log In", new_contact_session_path %>
+      <% end %>
+  </div>
+</nav>

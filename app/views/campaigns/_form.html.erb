@@ -1,0 +1,85 @@
+<%= nested_form_for @campaign, :html => { class: 'clearfix' } do |f| %>
+  <% if @campaign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+      <ul>
+    <% @campaign.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id='campaign_form'>
+  
+    <!-- <div id='media_preview'><img src='/assets/missing.gif'></div> -->
+ <div class='campaign_form_piece clearfix'>   
+     <div class="field">
+       <%= f.label :title %><br />
+       <%= f.text_field :title %>
+     </div>
+   
+     <div class="field">
+        <%= f.label :media %><br />
+        <div id="tabs">
+           <ul>
+             <li><a href="#media1">Image</a></li>
+             <li><a href="#media2">Video</a></li>
+           </ul>
+           <div id="media1"><%= f.file_field :media %></div>
+           <div id="media2"><%= f.text_field :video, { placeholder: 'Link to Video' } %></div>
+        </div>
+     </div>
+</div>
+
+<div class='campaign_form_piece clearfix'>
+    <div class="field">
+      <%= f.label :goal %><br />
+      <%= f.text_field :goal %>
+    </div>
+
+    <div class="field">
+      <%= f.label :expiry %><br />
+      <%= f.date_field :expiry %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :hub %><br />
+      <%= f.text_field :hub %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :token %><br />
+      <%= f.text_field :token %>
+    </div>
+</div>  
+
+    <div class="field">
+      <%= f.label :details %>
+      <%= f.cktext_area :details, { placeholder: 'Details', id: 'details' } %>
+    </div>
+  
+    <div class="actions clearfix">
+      <%= f.submit %>
+    </div>
+  </div>
+
+
+  <div id='rewards_form'>
+    <h2>Rewards</h2>
+
+    <%= f.fields_for :rewards, :html => { class: 'reward' } do |reward| %>
+      <div class='reward'>   
+        <div class="field">
+          <%= reward.text_area :description, { placeholder: 'Description' } %>
+        </div>    
+        <div class="field">
+          <%= reward.number_field :milestone, { placeholder: 'Milestone' } %>
+        </div> 
+        <%= reward.link_to_remove "Remove this reward" %>
+      </div>
+    <% end %>
+    <p><%= f.link_to_add "Add a reward", :rewards %></p>
+  </div>
+<% end %>

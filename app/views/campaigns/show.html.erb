@@ -1,0 +1,116 @@
+<style>
+	.hero_background {
+		background: <%= @campaign.hero %>;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 50% 50%;
+	}
+</style>
+
+<script>
+var ready;
+var currentProgress = <%= @campaign.referrals.count %>;
+function getProgress() {
+  var goal = <%= @campaign.goal %>;
+  var increment = $('#progress').width()/goal;
+  var countdown = new Countdown({
+      selector: '#countdown',
+      msgPattern: "<div class='time_section'>{days}<br /> DAYS</div> <div class='time_section'>{hours}<br /> HOURS</div> <div class='time_section'>{minutes}<br /> MINUTES</div>",
+      dateStart: new Date(),
+      dateEnd: new Date("<%= @campaign.expiry.to_time %>")
+  });
+  $('#bar').css('right', function() {
+    return $('#progress').width() - (increment*currentProgress) + "px";
+  })
+  $('#bar p').html(currentProgress);
+}
+ready = function() {
+	getProgress();
+}
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
+</script>
+
+<div id='campaign_hero'>
+	<div class='hero_background'></div>
+	<div class='container clearfix'>
+		<div class='campaign_media'>
+			<%= @campaign.campaign_media %>
+		</div>
+		<div class='hero_details'>
+			<h1><%= @campaign.title %></h1>
+			<span class='hero_bold'>GOAL</span>
+			<p class='hero_referrals'><%= @campaign.goal %> Referrals</p>
+			<span class='hero_bold'>COUNTDOWN</span>
+			<p id='countdown'></p>
+		</div>
+	</div>
+</div>
+
+<div class='container'>
+	<div class='campaign_content'>
+		<p><%= @campaign.details.html_safe %></p>
+	</div>
+	<div class='campaign_meta'>
+		<span class='content_bold'>GOAL</span>
+		<div id='progress'>
+			<div id='bar' data-value='<%= @campaign.referrals.count %>'>
+				<p><%= @campaign.referrals.count %></p>
+			</div>
+		</div>
+		<span class='content_bold'>SHARE</span>
+		<div class='content_share'>
+		<a href='#'><i class='fa fa-facebook-square'></i></a>
+		<a href='#'><i class='fa fa-linkedin-square'></i></a>
+		<a href='#'><i class='fa fa-twitter-square'></i></a>
+		<a href='#'><i class='fa fa-envelope-square'></i></a>
+		<a href='#'><i class='fa fa-link'></i></a>
+		</div>
+		<div class='campaign_refs'>
+			<span class='ref_banner'> GIVE ME YOUR REFERRAL! </span>
+			<%= form_for [@campaign, Referral.new], remote: true do |f| %>
+				<div class="field">
+					<%= f.label :first_name %><br />
+				    <%= f.text_field :first_name %>
+				</div>
+
+				<div class="field">
+					<%= f.label :last_name %><br />
+				    <%= f.text_field :last_name %>
+				</div>
+
+				<div class="field">
+					<%= f.label :email %><br />
+				    <%= f.text_field :email %>
+				</div>
+
+				<div class="field">
+					<%= f.label :company %><br />
+				    <%= f.text_field :company %>
+				</div>
+
+				<div class="field">
+					<%= f.label :description %><br />
+				    <%= f.text_field :description %>
+				</div>	
+
+				<div class="field">
+					<%= f.label :referree %><br />
+				    <%= f.text_field :referree %>
+				</div>
+
+				<div class="actions">
+				  <%= f.submit "Submit Referral" %>
+				</div>
+			<% end %>
+		</div>
+		<span class='content_bold'> REWARDS </span>
+		<% @campaign.rewards.each do |r| %>
+			<div class="campaign_reward clearfix">
+				<span class="reward_milestone"><%= r.milestone %></span>
+				<span class='table'><%= r.description %></span>
+			</div>
+		<% end %>
+	</div>
+</div>

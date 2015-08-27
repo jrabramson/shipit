@@ -5,8 +5,6 @@ class ReferralsController < ApplicationController
   # GET /referrals.json
   def index
     @referrals = Referral.all
-    @advocate = Advocate.new
-    @progress = Progress.first
   end
 
   # GET /referrals/1
@@ -27,14 +25,11 @@ class ReferralsController < ApplicationController
   # POST /referrals.json
   def create
     @referral = Referral.new(referral_params)
-    Progress.first.increment!(:amount, 4)
     respond_to do |format|
       if @referral.save
-        format.html { redirect_to @referral, notice: 'Referral was successfully created.' }
-        format.json { render :show, status: :created, location: @referral }
+        format.json { render json: {status: 'Referral sent', progress: @referral.amount } }
       else
-        format.html { render :new }
-        format.json { render json: @referral.errors, status: :unprocessable_entity }
+        format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
       end
     end
   end
@@ -48,7 +43,7 @@ class ReferralsController < ApplicationController
         format.json { render :show, status: :ok, location: @referral }
       else
         format.html { render :edit }
-        format.json { render json: @referral.errors, status: :unprocessable_entity }
+        format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -71,6 +66,6 @@ class ReferralsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def referral_params
-      params.require(:referral).permit(:name)
+      params.require(:referral).permit(:first_name, :last_name, :email, :description, :referree, :company).merge({campaign_id: params[:campaign_id]})
     end
 end
