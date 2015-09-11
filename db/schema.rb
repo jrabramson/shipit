@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150826190939) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "campaigns", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "goal"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.datetime "media_updated_at"
   end
 
-  add_index "campaigns", ["contact_id"], name: "index_campaigns_on_contact_id"
+  add_index "campaigns", ["contact_id"], name: "index_campaigns_on_contact_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -45,8 +48,8 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -74,9 +77,9 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "contacts", ["confirmation_token"], name: "index_contacts_on_confirmation_token", unique: true
-  add_index "contacts", ["email"], name: "index_contacts_on_email", unique: true
-  add_index "contacts", ["reset_password_token"], name: "index_contacts_on_reset_password_token", unique: true
+  add_index "contacts", ["confirmation_token"], name: "index_contacts_on_confirmation_token", unique: true, using: :btree
+  add_index "contacts", ["email"], name: "index_contacts_on_email", unique: true, using: :btree
+  add_index "contacts", ["reset_password_token"], name: "index_contacts_on_reset_password_token", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -92,21 +95,22 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "referrals", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "referree"
+    t.string   "referree_name"
+    t.string   "referree_email"
     t.string   "company"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "campaign_id"
   end
 
-  add_index "referrals", ["campaign_id"], name: "index_referrals_on_campaign_id"
+  add_index "referrals", ["campaign_id"], name: "index_referrals_on_campaign_id", using: :btree
 
   create_table "rewards", force: :cascade do |t|
     t.integer  "campaign_id"
@@ -117,6 +121,8 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "rewards", ["campaign_id"], name: "index_rewards_on_campaign_id"
+  add_index "rewards", ["campaign_id"], name: "index_rewards_on_campaign_id", using: :btree
 
+  add_foreign_key "campaigns", "contacts"
+  add_foreign_key "rewards", "campaigns"
 end

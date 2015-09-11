@@ -99,3 +99,38 @@ h2 {
 	display: table;
 }
 
+.front-wrap {
+    width: 60%;
+    margin: 0 auto;
+    button {
+        border: 0;
+        background-color: #fab515;
+        float: right;
+        padding: 10px 30px;
+        font-size: 18px;
+        text-shadow: 1px 1px white;
+    }
+    .title {
+        &.front {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 46px;
+            line-height: 43px;
+            margin: 12px 20px;
+            text-transform: uppercase;;
+            display: inline-block;
+            span:first-of-type{
+                color: #fab515;
+                font-weight: normal;
+                display: block;
+                font-family: 'Oleo Script', cursive;
+                text-transform: none;
+                font-size: 62px;
+                transform: rotate(-3deg);
+                position: relative;
+                left: -5px;
+                top: -1px;
+            }
+        }
+    }
+}

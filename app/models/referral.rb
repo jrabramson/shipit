@@ -1,5 +1,5 @@
 class Referral < ActiveRecord::Base
-	validates :campaign, :email, :first_name, :last_name, :company, :referree, :presence => true
+	validates :campaign, :email, :first_name, :last_name, :company, :referree_name, :referree_email, :presence => true
 	belongs_to :campaign
 
 	after_save :push_lead
@@ -25,15 +25,15 @@ class Referral < ActiveRecord::Base
 				company: company,
 			},
 			advocate: {
-				email: referree
+				email: referree_email
 			}
 		}.to_json
 	end
 
 	def referree_params
 		{ 
-			email: referree,
-			name: 'test',
+			email: referree_email,
+			name: referree_name,
 			source: campaign.contact.email 
 		}.to_json
 	end

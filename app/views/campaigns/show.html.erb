@@ -41,7 +41,9 @@ $(document).on('page:load', ready)
 		<div class='hero_details'>
 			<h1><%= @campaign.title %></h1>
 			<span class='hero_bold'>GOAL</span>
-			<p class='hero_referrals'><%= @campaign.goal %> Referrals</p>
+			<p class='hero_referrals'>
+				<span><%= @campaign.goal %> Referrals</span>
+			</p>
 			<span class='hero_bold'>COUNTDOWN</span>
 			<p id='countdown'></p>
 		</div>
@@ -91,13 +93,18 @@ $(document).on('page:load', ready)
 				</div>
 
 				<div class="field">
-					<%= f.label :description %><br />
-				    <%= f.text_field :description %>
+					<%= f.label :note %><br />
+				    <%= f.text_field :note %>
 				</div>	
 
 				<div class="field">
-					<%= f.label :referree %><br />
-				    <%= f.text_field :referree %>
+					<%= f.label "Your Name" %><br />
+				    <%= f.text_field :referree_name %>
+				</div>
+
+				<div class="field">
+					<%= f.label "Your Email" %><br />
+				    <%= f.text_field :referree_email %>
 				</div>
 
 				<div class="actions">

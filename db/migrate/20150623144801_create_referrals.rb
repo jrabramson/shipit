@@ -4,9 +4,10 @@ class CreateReferrals < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.string :referree
+      t.string :referree_name
+      t.string :referree_email
       t.string :company
-      t.string :description
+      t.string :note
       t.timestamps null: false
     end
 

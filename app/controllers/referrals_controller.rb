@@ -66,6 +66,6 @@ class ReferralsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def referral_params
-      params.require(:referral).permit(:first_name, :last_name, :email, :description, :referree, :company).merge({campaign_id: params[:campaign_id]})
+      params.require(:referral).permit(:first_name, :last_name, :email, :note, :referree_name, :referree_email, :company).merge({campaign_id: params[:campaign_id]})
     end
 end

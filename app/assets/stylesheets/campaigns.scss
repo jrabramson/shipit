@@ -36,10 +36,13 @@
 
 #campaign_hero {
 	position: relative;
+	overflow: hidden;
+    margin: -10px -15px 0px -15px;
 	.campaign_media {
-	    display: inline-block;
-	    padding: 20px 20px;
-	    width: 440px;
+		display: inline-block;
+		padding: 20px 20px;
+		text-align: center;
+		width: 540px;
 	}
 	.hero_details {
 		display: inline-block;
@@ -47,7 +50,7 @@
 	    padding: 20px 0px;
 		color: white;
 		font-weight: 100;
-		width: 600px;
+		width: 500px;
 		font-size: 16px;
 		h1 {
 			font-size: 30px;
@@ -56,6 +59,12 @@
 		}
 		.hero_referrals {
 			font-size: 18px;
+			span {
+				display: inline-block;
+				text-align: center;
+				padding: 5px;
+				background-color: #00709c;
+			}
 		}
 		.hero_bold {
 		    background-color: rgb(90,98,109);
@@ -289,7 +298,7 @@
 	    padding: 20px;
 	    .ref_info {
 	    	display: inline-block;
-	    	width: 33%;
+	    	width: calc(100% / 6);
 	    }
 	    .ref_header {
 	    	font-weight: bold;

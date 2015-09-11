@@ -2,7 +2,10 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_contact!, only: [:new, :edit, :destroy, :create, :manage]
 
-	def index
+  	def index
+  	end
+
+	def browse
 		@campaigns ||= Campaign.all
 	end
 
@@ -60,6 +63,6 @@ private
     end
 
     def campaign_params
-      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :video, rewards_attributes: [:id, :title, :description, :milestone, :icon, :_destroy])
+      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :video, rewards_attributes: [:id, :title, :note, :milestone, :icon, :referree_name, :referree_email, :_destroy])
     end
 end

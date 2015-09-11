@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   get '/manage', to: 'campaigns#manage'
+  get '/explore', to: 'campaigns#browse'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -50,13 +50,20 @@ this.CampaignRefs =  React.createClass({
       <h3> Referrals </h3>
       <div className='ref_info ref_header'>Name</div>
       <div className='ref_info ref_header'>Email</div>
-      <div className='ref_info ref_header'>Description</div>
+      <div className='ref_info ref_header'>Note</div>
+      <div className='ref_info ref_header'>Company</div>
+      <div className='ref_info ref_header'>Referree Name</div>
+      <div className='ref_info ref_header'>Referree Email</div>
       <hr />
       {refs.map(function(ref) {
         return <div key={ref.id} class='ref_row'>
           <div className='ref_info' key={ref.first_name}>{ref.first_name} {ref.last_name}</div>
           <div className='ref_info' key={ref.email}>{ref.email}</div>
-          <div className='ref_info' key={ref.description}>{ref.description}</div>
+          <div className='ref_info' key={ref.note}>{ref.note}</div>
+          <div className='ref_info' key={ref.note}>{ref.company}</div>
+          <div className='ref_info' key={ref.note}>{ref.referree_name}</div>
+          <div className='ref_info' key={ref.note}>{ref.referree_email}</div>
+          <hr />
         </div> 
       })}
     </div>
