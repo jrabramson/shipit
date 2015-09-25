@@ -12,6 +12,7 @@ gem 'pry-remote'
 gem 'auto_html'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'jquery-ui-rails'
+gem 'rails_12factor'
 
 gem 'therubyracer'
 # gem 'less-rails'
