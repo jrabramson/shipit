@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150826190939) do
     t.string   "referree_name"
     t.string   "referree_email"
     t.string   "company"
-    t.string   "description"
+    t.string   "note"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "campaign_id"
