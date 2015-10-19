@@ -12,6 +12,6 @@ class Contact < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def nav_avatar
-  	File.exist?(self.avatar.url(:medium)) ? self.avatar.url(:medium) : ActionController::Base.helpers.asset_path('missing.gif')
+  	self.avatar.url(:medium) ? self.avatar.url(:medium) : ActionController::Base.helpers.asset_path('missing.gif')
   end
 end
