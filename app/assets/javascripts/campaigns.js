@@ -20,8 +20,4 @@ $(function() {
     reader.readAsDataURL(image);
     console.log(files);
   });
-  
-  // 
-  // 
-  // 
 });

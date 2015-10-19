@@ -88,6 +88,8 @@ h2 {
 	}
 	a {
 		font-size: 20px;
+        position: relative;
+        display: block;
 	}
 }
 
@@ -133,4 +135,8 @@ h2 {
             }
         }
     }
+}
+
+footer p {
+    width: 100%;
 }

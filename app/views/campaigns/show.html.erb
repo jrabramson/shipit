@@ -69,49 +69,51 @@ $(document).on('page:load', ready)
 		<a href='#'><i class='fa fa-envelope-square'></i></a>
 		<a href='#'><i class='fa fa-link'></i></a>
 		</div>
-		<div class='campaign_refs'>
-			<span class='ref_banner'> Please Submit Your Referral Details Below </span>
-			<%= form_for [@campaign, Referral.new], remote: true do |f| %>
-				<div class="field">
-					<%= f.label :first_name %><br />
-				    <%= f.text_field :first_name %>
-				</div>
+		<% unless @campaign.expiry.past? || @campaign.referrals.count == @campaign.goal %>
+			<div class='campaign_refs'>
+				<span class='ref_banner'> Please Submit Your Referral Details Below </span>
+				<%= form_for [@campaign, Referral.new], remote: true do |f| %>
+					<div class="field">
+						<%= f.label :first_name %><br />
+					    <%= f.text_field :first_name %>
+					</div>
 
-				<div class="field">
-					<%= f.label :last_name %><br />
-				    <%= f.text_field :last_name %>
-				</div>
+					<div class="field">
+						<%= f.label :last_name %><br />
+					    <%= f.text_field :last_name %>
+					</div>
 
-				<div class="field">
-					<%= f.label :email %><br />
-				    <%= f.text_field :email %>
-				</div>
+					<div class="field">
+						<%= f.label :email %><br />
+					    <%= f.text_field :email %>
+					</div>
 
-				<div class="field">
-					<%= f.label :company %><br />
-				    <%= f.text_field :company %>
-				</div>
+					<div class="field">
+						<%= f.label :company %><br />
+					    <%= f.text_field :company %>
+					</div>
 
-				<div class="field">
-					<%= f.label :note %><br />
-				    <%= f.text_field :note %>
-				</div>	
+					<div class="field">
+						<%= f.label :note %><br />
+					    <%= f.text_field :note %>
+					</div>	
 
-				<div class="field">
-					<%= f.label "Your Name" %><br />
-				    <%= f.text_field :referree_name %>
-				</div>
+					<div class="field">
+						<%= f.label "Your Name" %><br />
+					    <%= f.text_field :referree_name %>
+					</div>
 
-				<div class="field">
-					<%= f.label "Your Email" %><br />
-				    <%= f.text_field :referree_email %>
-				</div>
+					<div class="field">
+						<%= f.label "Your Email" %><br />
+					    <%= f.text_field :referree_email %>
+					</div>
 
-				<div class="actions">
-				  <%= f.submit "Submit Referral" %>
-				</div>
-			<% end %>
-		</div>
+					<div class="actions">
+					  <%= f.submit "Submit Referral" %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
 		<span class='content_bold'> REWARDS </span>
 		<% @campaign.rewards.each do |r| %>
 			<div class="campaign_reward clearfix">

@@ -2,8 +2,8 @@
 	<div class='grid'>
 	  <% @campaigns.each_with_index do |campaign, i| %>
 	      <div class='grid-item'>
-	        <%= campaign.campaign_media %> 
 	        <%= link_to campaign do %>
+		      <%= campaign.campaign_media %> 
 	          <div class='grid-overlay'>
 	          	<%= campaign.title %><br />
 	          	<span class='grid-progress'><%= campaign.referrals.count %> / <%= campaign.goal %><br />REFERRALS</span>

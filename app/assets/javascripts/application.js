@@ -45,8 +45,8 @@ var ready;
 ready = function() {
 	$('#profile').click(function(e) {
 		e.preventDefault;
-    $('.profile_nav').toggleClass('zoomOutRight');
-    $('.profile_nav').toggleClass('zoomInRight');
+    $('.profile_nav').fadeToggle();
+    // $('.profile_nav').toggleClass('zoomInRight');
     $('.nav-choice').toggleClass('fa-arrow-down');
 		$('.nav-choice').toggleClass('fa-arrow-up');
 	});
