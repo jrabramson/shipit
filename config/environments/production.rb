@@ -65,7 +65,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.smtp_settings = {
-    :address => "localhost",
+    :host => "localhost",
     :port => 25,
     :domain => "leadstarter.influitive.com",
   }
