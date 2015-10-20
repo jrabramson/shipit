@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'campaigns#index'
   
   devise_for :contacts, :controllers => { registrations: 'registrations' }
-  resources :contacts
+  resources :contacts, only: [:new, :create, :edit, :update]
   resources :campaigns do
     resources :referrals
   end

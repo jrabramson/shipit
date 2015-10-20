@@ -63,11 +63,11 @@ $(document).on('page:load', ready)
 		</div>
 		<span class='content_bold'>SHARE</span>
 		<div class='content_share'>
-		<a href='#'><i class='fa fa-facebook-square'></i></a>
-		<a href='#'><i class='fa fa-linkedin-square'></i></a>
-		<a href='#'><i class='fa fa-twitter-square'></i></a>
-		<a href='#'><i class='fa fa-envelope-square'></i></a>
-		<a href='#'><i class='fa fa-link'></i></a>
+		<a target="_blank" href='http://www.facebook.com/sharer/sharer.php?u=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>'><i class='fa fa-facebook-square'></i></a>
+		<a target="_blank" href='http://www.linkedin.com/shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>&source=leadstarter.influitive.com'><i class='fa fa-linkedin-square'></i></a>
+		<a target="_blank" href='http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>'><i class='fa fa-twitter-square'></i></a>
+<!-- 		<a target="_blank" href='#'><i class='fa fa-envelope-square'></i></a>
+		<a target="_blank" href='#'><i class='fa fa-link'></i></a> -->
 		</div>
 		<% unless @campaign.expiry.past? || @campaign.referrals.count == @campaign.goal %>
 			<div class='campaign_refs'>
@@ -114,12 +114,14 @@ $(document).on('page:load', ready)
 				<% end %>
 			</div>
 		<% end %>
-		<span class='content_bold'> REWARDS </span>
-		<% @campaign.rewards.each do |r| %>
-			<div class="campaign_reward clearfix">
-				<span class="reward_milestone"><%= r.milestone %></span>
-				<span class='table'><%= r.description %></span>
-			</div>
+		<% if @campaign.rewards.any? %>
+			<span class='content_bold'> REWARDS </span>
+			<% @campaign.rewards.each do |r| %>
+				<div class="campaign_reward clearfix">
+					<span class="reward_milestone"><%= r.milestone %></span>
+					<span class='table'><%= r.description %></span>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
