@@ -1,28 +1,6 @@
 class ReferralsController < ApplicationController
   before_action :set_referral, only: [:show, :edit, :update, :destroy]
 
-  # GET /referrals
-  # GET /referrals.json
-  def index
-    @referrals = Referral.all
-  end
-
-  # GET /referrals/1
-  # GET /referrals/1.json
-  def show
-  end
-
-  # GET /referrals/new
-  def new
-    @referral = Referral.new
-  end
-
-  # GET /referrals/1/edit
-  def edit
-  end
-
-  # POST /referrals
-  # POST /referrals.json
   def create
     @referral = Referral.new(referral_params)
     respond_to do |format|
@@ -34,8 +12,6 @@ class ReferralsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /referrals/1
-  # PATCH/PUT /referrals/1.json
   def update
     respond_to do |format|
       if @referral.update(referral_params)
@@ -48,8 +24,6 @@ class ReferralsController < ApplicationController
     end
   end
 
-  # DELETE /referrals/1
-  # DELETE /referrals/1.json
   def destroy
     @referral.destroy
     respond_to do |format|
@@ -59,12 +33,11 @@ class ReferralsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_referral
       @referral = Referral.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def referral_params
       params.require(:referral).permit(:first_name, :last_name, :email, :note, :referree_name, :referree_email, :company).merge({campaign_id: params[:campaign_id]})
     end

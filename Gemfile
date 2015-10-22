@@ -10,7 +10,7 @@ gem 'daemons'
 gem 'faraday'
 gem 'pry-remote'
 gem 'auto_html'
-gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'ckeditor'
 gem 'jquery-ui-rails'
 gem 'rails_12factor'
 
