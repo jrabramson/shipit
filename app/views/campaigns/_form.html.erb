@@ -72,7 +72,7 @@
     <%= f.fields_for :rewards, :html => { class: 'reward' } do |reward| %>
       <div class='reward'>   
         <div class="field">
-          <%= reward.text_area :description, { placeholder: 'Description' } %>
+          <%= reward.cktext_area :description, { placeholder: 'Description' } %>
         </div>    
         <div class="field">
           <%= reward.number_field :milestone, { placeholder: 'Milestone' } %>

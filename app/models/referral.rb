@@ -2,7 +2,7 @@ class Referral < ActiveRecord::Base
 	validates :campaign, :email, :first_name, :last_name, :company, :referree_name, :referree_email, :presence => true
 	belongs_to :campaign
 
-	after_save :push_lead
+	# after_save :push_lead
 
 	def push_lead
 		return unless campaign.token?
