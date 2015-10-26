@@ -228,8 +228,8 @@
 	width: 100%;
 
 	.table_header {
-	    display: table;
-	    border-bottom: solid #999 1px;
+	    display: flex;
+	    // border-bottom: solid #999 1px;
 		width: 100%;
 		span {
 			display: table-cell;
@@ -244,7 +244,7 @@
 
 
 	.row_container {
-		transition: all 1s;
+		// transition: all 1s;
 		max-height: 105px;
 	}
 
@@ -255,8 +255,9 @@
 	.manage_campaign_row {
 	    border-top: solid #999 1px;
 	    background-color: white;
-	    display: table;
-	    width: 100%;
+	    display: inline-table;
+	    width: 90%;
+	    height: 80px;
 
 		&.expired {
 			background: #EF8282;
@@ -284,14 +285,21 @@
 	    	}
 	    }
 
-	    .manage_control {
-	    	a {
-	    		display: block;
-	    		text-align: center;
-	    		padding: 5px;
-	    	}
-	    }
 	}
+    
+    .manage_control {
+    	display: inline-table;
+    	vertical-align: top;
+    	text-align: center;
+    	border-top: 1px solid #999;
+    	width: 10%;
+    	height: 80px;
+    	line-height: 25px;
+    	a {
+    		text-align: center;
+    		padding: 5px;
+    	}
+    }
 
 	.campaign_refs {
 	    height: 210px;

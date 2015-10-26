@@ -13,13 +13,13 @@ this.Campaign = React.createClass({
   },
   showRefs: function(event) {
     this.setState({ selected: !this.state.selected })
-    $('.row_container').toggleClass('in');
+    $(this.refs.row_container.getDOMNode()).toggleClass('in');
   },
   render: function() {
     var now = new Date();
     var campaignStatus = this.props.refs.length == this.props.data.goal ? 'complete' :
     Date.parse(this.props.data.expiry) < now ? 'expired' : '';
-    return <div className='row_container'>
+    return <div className='row_container' ref='row_container'>
       <div className={campaignStatus + ' manage_campaign_row'} onClick={this.showRefs}>
         <div className='manage_campaign_cell'>
         </div>          
@@ -32,11 +32,11 @@ this.Campaign = React.createClass({
         <div className='manage_campaign_cell'>
           {this.props.data.expiry}
         </div>
-        <div className='manage_campaign_cell manage_control'>
-          <a href={'/campaigns/' + this.props.data.id}>Show</a>
-          <a href={'/campaigns/' + this.props.data.id + '/edit/'}>Edit</a>
-          <a rel="nofollow" data-method="delete" href={'/campaigns/' + this.props.data.id}>Delete</a>
-        </div>
+      </div>
+      <div className='manage_campaign_cell manage_control'>
+        <a href={'/campaigns/' + this.props.data.id}>Show</a><br/>
+        <a href={'/campaigns/' + this.props.data.id + '/edit/'}>Edit</a><br/>
+        <a rel="nofollow" data-method="delete" href={'/campaigns/' + this.props.data.id}>Delete</a>
       </div>
       {this.state.selected ? <CampaignRefs refs={this.props.refs}/> : ''}
   	</div>
@@ -56,7 +56,7 @@ this.CampaignRefs =  React.createClass({
       <div className='ref_info ref_header'>Referree Email</div>
       <hr />
       {refs.map(function(ref) {
-        return <div key={ref.id} class='ref_row'>
+        return <div key={ref.id} className='ref_row'>
           <div className='ref_info'>{ref.first_name} {ref.last_name}</div>
           <div className='ref_info'>{ref.email}</div>
           <div className='ref_info'>{ref.note}</div>
