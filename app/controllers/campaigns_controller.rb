@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_contact!
+  before_action :authenticate_contact!, only: [:edit, :update, :destroy, :new, :create]
 
   	def index
   	end
