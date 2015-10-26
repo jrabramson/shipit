@@ -11,8 +11,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
   <%= csrf_meta_tags %>
 
+  <meta property="og:site_name" content="Leadstarter"/>
   <% if @campaign %>
     <meta property="og:title" content="<%= @campaign.title %>"/>
+    <meta property="og:url" content="<%=u campaign_url(@campaign) %>" />
+    <meta property="og:description" content="<%=  strip_tags @campaign.details.truncate(150) %>"/>
   <% end %>
 </head>
 <body>
