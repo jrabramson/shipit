@@ -119,7 +119,7 @@ $(document).on('page:load', ready)
 			<% @campaign.rewards.each do |r| %>
 				<div class="campaign_reward clearfix">
 					<span class="reward_milestone"><%= r.milestone %></span>
-					<span class='table'><%= r.description %></span>
+					<span class='table'><%= r.description.html_safe %></span>
 				</div>
 			<% end %>
 		<% end %>
