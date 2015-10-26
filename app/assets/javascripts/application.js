@@ -25,8 +25,8 @@
 //= require_tree .
 
 $(document).ajaxError(function(event, request) {
-  var msg = request.responseText;
-  if (msg) msg.split(",").forEach(function(e) {
+  var msg = JSON.parse(request.responseText);
+  if (msg) msg.forEach(function(e) {
   	$.gritter.add({ title: 'Error', text: e });
   })
 });
@@ -46,7 +46,6 @@ ready = function() {
 	$('#profile').click(function(e) {
 		e.preventDefault;
     $('.profile_nav').fadeToggle();
-    // $('.profile_nav').toggleClass('zoomInRight');
     $('.nav-choice').toggleClass('fa-arrow-down');
 		$('.nav-choice').toggleClass('fa-arrow-up');
 	});

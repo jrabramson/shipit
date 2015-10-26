@@ -1,5 +1,7 @@
 class Referral < ActiveRecord::Base
 	validates :campaign, :email, :first_name, :last_name, :company, :referree_name, :referree_email, :presence => true
+	validates_format_of :email, with: /.+@.+\..+/i
+	validates_format_of :referree_email, with: /.+@.+\..+/i
 	belongs_to :campaign
 
 	# after_save :push_lead

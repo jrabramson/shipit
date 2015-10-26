@@ -10,6 +10,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.1/isotope.pkgd.min.js"></script>
   <%= csrf_meta_tags %>
+
+  <% if @campaign %>
+    <meta property="og:title" content="<%= @campaign.title %>"/>
+  <% end %>
 </head>
 <body>
 	
