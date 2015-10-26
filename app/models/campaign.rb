@@ -18,8 +18,8 @@ class Campaign < ActiveRecord::Base
   end
 
   def campaign_media
-  	self.media.exists? ? ActionController::Base.helpers.image_tag(self.media.url(:medium))
-      : self.video.present? ? self.video_html
+    self.video.present? ? self.video_html=
+      : self.media.exists? ? ActionController::Base.helpers.image_tag(self.media.url(:medium))
       : ActionController::Base.helpers.image_tag(ActionController::Base.helpers.asset_path('missing.gif'))
   end
 
