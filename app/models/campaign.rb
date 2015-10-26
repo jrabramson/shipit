@@ -30,8 +30,8 @@ class Campaign < ActiveRecord::Base
   end
 
   def hero
-    media.exists? ? "url(#{self.media.url(:medium)})"
-       : video.present? ? "url(http://img.youtube.com/vi/#{video_id}/0.jpg)"
+    video.present? ? "url(http://img.youtube.com/vi/#{video_id}/0.jpg)"
+       : media.exists? ? "url(#{self.media.url(:medium)})"
        : ''
   end
 end
