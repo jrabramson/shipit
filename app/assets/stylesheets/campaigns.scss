@@ -246,10 +246,17 @@
 	.row_container {
 		// transition: all 1s;
 		max-height: 105px;
+	    border: 1px solid #999;
 	}
 
 	.in {
 		max-height: 1000px;
+		.manage_campaign_row {
+			border-bottom: 1px solid #999;
+		}
+		.manage_control {
+			border-bottom: 1px solid #999;
+		}
 	}
 
 	.manage_campaign_row {
@@ -292,6 +299,7 @@
     	vertical-align: top;
     	text-align: center;
     	border-top: 1px solid #999;
+    	border-left: 1px solid #999;
     	width: 10%;
     	height: 80px;
     	line-height: 25px;
