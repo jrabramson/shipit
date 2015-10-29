@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :contacts, :controllers => { registrations: 'registrations' }
   resources :contacts, only: [:new, :create, :edit, :update, :destroy]
   get 'manage' => 'campaigns#manage'
+  get 'explore' => 'campaigns#browse'
   resources :campaigns, param: :custom_path, path: '' do
     resources :referrals, only: [:create, :destroy, :update] do
       post 'push' => 'referrals#push'

@@ -4,8 +4,6 @@ class Referral < ActiveRecord::Base
 	validates_format_of :referree_email, with: /.+@.+\..+/i
 	belongs_to :campaign
 
-	# after_save :push_lead
-
 	def push_lead
 		return unless campaign.token?
 		conn = Faraday.new("https://#{campaign.hub}.influitiveqa.com/api/")
