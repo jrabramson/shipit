@@ -1,11 +1,11 @@
 class ReferralsController < ApplicationController
-  before_action :set_referral, only: [:show, :edit, :update, :destroy]
+  before_action :set_referral, only: [:show, :edit, :update, :destroy, :push]
 
   def create
     @referral = Referral.new(referral_params)
     respond_to do |format|
       if @referral.save
-        format.json { render json: {status: 'Referral sent', progress: @referral.amount } }
+        format.json { render json: {status: 'Referral created', progress: @referral.amount } }
       else
         format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
       end
@@ -29,6 +29,17 @@ class ReferralsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to referrals_url, notice: 'Referral was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def push
+    respond_to do |format|
+      lead_push = @referral.push_lead
+      if lead_push.all? { |r| r.status == 201 }
+        format.json { render json: {status: 'Successfully Sent'} }
+      else
+        format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
+      end
     end
   end
 

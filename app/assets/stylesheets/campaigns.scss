@@ -327,7 +327,15 @@
 	    padding: 20px;
 	    .ref_info {
 	    	display: inline-block;
-	    	width: calc(100% / 6);
+	    	width: calc(100% / 4);
+	    	word-wrap: break-word;
+	    	padding: 3px;
+    	    vertical-align: top;
+    	    .ref_push {
+    	    	width: 32px;
+    	    	float: right;
+    	    	cursor: pointer;
+    	    }
 	    }
 	    .ref_header {
 	    	font-weight: bold;

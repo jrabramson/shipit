@@ -8,13 +8,15 @@ class Referral < ActiveRecord::Base
 
 	def push_lead
 		return unless campaign.token?
-		conn = Faraday.new('https://www.influitiveqa.com/api/')
+		conn = Faraday.new("https://#{campaign.hub}.influitiveqa.com/api/")
 		conn.authorization :Token, :token => campaign.token
 		conn.headers['Content-Type'] = 'application/json'
 		conn.headers['Accept'] = 'application/json'
 
-		conn.post 'members', referree_params
-		conn.post 'referrals', referral_params
+		res1 = conn.post 'members', referree_params
+		res2 = conn.post 'referrals', referral_params
+
+		[res1, res2]
 	end
 	# handle_asynchronously :push_lead
 

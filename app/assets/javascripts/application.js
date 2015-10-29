@@ -30,16 +30,6 @@ $(document).ajaxError(function(event, request) {
   })
 });
 
-$(document).ajaxSuccess(function(event, request) {
-  var msg = JSON.parse(request.responseText);
-  if (msg) {
-  	$.gritter.add({ title: 'Success', text: msg.status });
-    currentProgress++;
-  	getProgress();
-  	$('#new_referral')[0].reset();
-  }
-});
-
 var ready;
 ready = function() {
 	$('#profile').click(function(e) {

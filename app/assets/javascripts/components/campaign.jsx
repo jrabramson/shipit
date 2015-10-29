@@ -38,7 +38,7 @@ this.Campaign = React.createClass({
         <a href={'/' + this.props.data.custom_path + '/edit/'}>Edit</a><br/>
         <a rel="nofollow" data-method="delete" href={'/' + this.props.data.custom_path}>Delete</a>
       </div>
-      {this.state.selected ? <CampaignRefs refs={this.props.refs}/> : ''}
+      {this.state.selected ? <CampaignRefs refs={this.props.refs} path={this.props.data.custom_path} /> : ''}
   	</div>
   }
 });
@@ -47,25 +47,30 @@ this.CampaignRefs =  React.createClass({
   render: function() {
     refs = this.props.refs;
     return <div className='campaign_refs'>
-      <h3> Referrals </h3>
-      <div className='ref_info ref_header'>Name</div>
-      <div className='ref_info ref_header'>Email</div>
+      <div className='ref_info ref_header'>Contact</div>
       <div className='ref_info ref_header'>Note</div>
-      <div className='ref_info ref_header'>Company</div>
-      <div className='ref_info ref_header'>Referree Name</div>
-      <div className='ref_info ref_header'>Referree Email</div>
+      <div className='ref_info ref_header'>Referree</div>
+      <div className='ref_info ref_header'></div>
       <hr />
       {refs.map(function(ref) {
         return <div key={ref.id} className='ref_row'>
-          <div className='ref_info'>{ref.first_name} {ref.last_name}</div>
-          <div className='ref_info'>{ref.email}</div>
+          <div className='ref_info'>{ref.first_name} {ref.last_name}<br/>{ref.email}<br/>{ref.company}</div>
           <div className='ref_info'>{ref.note}</div>
-          <div className='ref_info'>{ref.company}</div>
-          <div className='ref_info'>{ref.referree_name}</div>
-          <div className='ref_info'>{ref.referree_email}</div>
+          <div className='ref_info'>{ref.referree_name}<br/>{ref.referree_email}</div>
+          <div className='ref_info'><img className='ref_push' src='/assets/api-icon.png' onClick={() => this._pushRef(ref.id)}/></div>
           <hr />
         </div> 
-      })}
+      }.bind(this))}
     </div>
+  },
+  _pushRef: function(ref) {
+    $.ajax({
+        type: 'POST',
+        url: '/' + this.props.path + '/referrals/' + ref + '/push',
+        data: { id: ref },
+        success: function (data, msg, jqXHR) {
+            $.gritter.add({ title: 'Success', text: msg });
+        }
+    });
   }
 });
