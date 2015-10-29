@@ -8,10 +8,8 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :hub
       t.string :token
       t.string :video
-      t.string :custom_path, null: false
       t.text :details
       
       t.timestamps null: false
     end
   end
-end
