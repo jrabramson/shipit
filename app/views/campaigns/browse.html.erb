@@ -3,7 +3,7 @@
 	  <% @campaigns.each_with_index do |campaign, i| %>
 	      <div class='grid-item'>
 	        <%= link_to campaign do %>
-		      <%= campaign.campaign_media %> 
+		      <%= campaign.chosen_media %> 
 	          <div class='grid-overlay'>
 	          	<%= campaign.title %><br />
 	          	<span class='grid-progress'><%= campaign.referrals.count %> / <%= campaign.goal %><br />REFERRALS</span>

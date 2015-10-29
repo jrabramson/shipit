@@ -15,7 +15,7 @@
 	width: 70%;
 	.campaign_form_piece {
 	    width: 50%;
-	    height: 275px;
+	    height: 315px;
 	    float: left;
 	}
 	input {
@@ -28,6 +28,11 @@
 		&:focus {
 		  border-bottom: solid 2px #969696;
 		}
+	}
+	.field_with_errors {
+		input {
+	    	border: 2px solid red;
+	    }
 	}
 	textarea {
 		width: 90%;

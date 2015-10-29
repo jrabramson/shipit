@@ -8,7 +8,7 @@
 		  <span> Expiry </span>
 		</div>
 		<% @campaigns.each do |campaign| %>
-			<%= react_component 'Campaign', { data: campaign, refs: campaign.referrals, icon: campaign.campaign_media } %>
+			<%= react_component 'Campaign', { data: campaign, refs: campaign.referrals, icon: campaign.chosen_media } %>
 		<% end %>
 	</div>
 </div>

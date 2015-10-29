@@ -36,7 +36,7 @@ $(document).on('page:load', ready)
 	<div class='hero_background'></div>
 	<div class='container clearfix'>
 		<div class='campaign_media'>
-			<%= @campaign.campaign_media %>
+			<%= @campaign.chosen_media %>
 		</div>
 		<div class='hero_details'>
 			<h1><%= @campaign.title %></h1>
@@ -54,6 +54,9 @@ $(document).on('page:load', ready)
 	<div class='campaign_content'>
 		<p><%= @campaign.details.html_safe %></p>
 	</div>
+	<% if @campaign.contact == current_contact %>
+		<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
+	<% end %>
 	<div class='campaign_meta'>
 		<span class='content_bold'>GOAL</span>
 		<div id='progress'>
@@ -72,6 +75,7 @@ $(document).on('page:load', ready)
 			<div class='campaign_refs'>
 				<span class='ref_banner'> Please Submit Your Referral Details Below </span>
 				<%= form_for [@campaign, Referral.new], remote: true do |f| %>
+					<%= f.hidden_field :campaign_id, :value => @campaign.id %>
 					<div class="field">
 						<%= f.label :first_name %><br />
 					    <%= f.text_field :first_name %>

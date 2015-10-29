@@ -12,6 +12,8 @@ gem 'pry-remote'
 gem 'auto_html'
 gem 'ckeditor'
 gem 'jquery-ui-rails'
+gem 'simple_form'
+
 gem 'rails_12factor'
 
 gem 'therubyracer'

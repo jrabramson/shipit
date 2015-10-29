@@ -4,7 +4,8 @@ class Campaign < ActiveRecord::Base
   has_many :rewards, inverse_of: :campaign
   accepts_nested_attributes_for :rewards
 
-  validates_presence_of :expiry, :title, :goal
+  validates_presence_of :expiry, :title, :goal, :custom_path
+  validates_uniqueness_of :custom_path
 
   has_attached_file :media, 
   	:styles => { 
@@ -17,7 +18,7 @@ class Campaign < ActiveRecord::Base
     youtube(:width => 400, :height => 250)
   end
 
-  def campaign_media
+  def chosen_media
     self.video.present? ? self.video_html
       : self.media.exists? ? ActionController::Base.helpers.image_tag(self.media.url(:medium))
       : ActionController::Base.helpers.image_tag(ActionController::Base.helpers.asset_path('missing.gif'))
@@ -33,5 +34,9 @@ class Campaign < ActiveRecord::Base
     video.present? ? "url(http://img.youtube.com/vi/#{video_id}/0.jpg)"
        : media.exists? ? "url(#{self.media.url(:medium)})"
        : ''
+  end
+
+  def to_param
+    custom_path
   end
 end

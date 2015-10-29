@@ -15,7 +15,6 @@
 //= require spin
 //= require jquery.spin
 //= require gritter
-//= require turbolinks
 //= require react
 //= require react_ujs
 //= require ckeditor/init

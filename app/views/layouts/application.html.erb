@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
 
   <meta property="og:site_name" content="Leadstarter"/>
-  <% if @campaign %>
+  <% if @campaign and params[:action] == 'show' %>
     <meta property="og:title" content="<%= @campaign.title %>"/>
     <meta property="og:url" content="<%= campaign_url(@campaign) %>" />
     <meta property="og:description" content="<%=  strip_tags @campaign.details.truncate(150) %>"/>

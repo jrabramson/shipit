@@ -34,9 +34,9 @@ this.Campaign = React.createClass({
         </div>
       </div>
       <div className='manage_campaign_cell manage_control'>
-        <a href={'/campaigns/' + this.props.data.id}>Show</a><br/>
-        <a href={'/campaigns/' + this.props.data.id + '/edit/'}>Edit</a><br/>
-        <a rel="nofollow" data-method="delete" href={'/campaigns/' + this.props.data.id}>Delete</a>
+        <a href={'/' + this.props.data.custom_path}>Show</a><br/>
+        <a href={'/' + this.props.data.custom_path + '/edit/'}>Edit</a><br/>
+        <a rel="nofollow" data-method="delete" href={'/' + this.props.data.custom_path}>Delete</a>
       </div>
       {this.state.selected ? <CampaignRefs refs={this.props.refs}/> : ''}
   	</div>

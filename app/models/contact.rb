@@ -8,7 +8,7 @@ class Contact < ActiveRecord::Base
   has_many :campaigns
   has_many :referrals, through: :campaign
 
-  has_attached_file :avatar, :styles => { :large => '1000x1000>', :medium => "300x300>", :thumb => "100x100#" }
+  has_attached_file :avatar, :styles => { :large => '1000x1000>', :medium => "300x300>", :thumb => "100x100#" }, :default_url => "missing.gif"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def nav_avatar

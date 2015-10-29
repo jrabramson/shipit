@@ -13,7 +13,7 @@
 
   <div id='campaign_form'>
   
-    <!-- <div id='media_preview'><img src='/assets/missing.gif'></div> -->
+<!-- <div id='media_preview'><%= @campaign.chosen_media %></div> -->
  <div class='campaign_form_piece clearfix'>   
      <div class="field">
        <%= f.label :title %><br />
@@ -30,6 +30,11 @@
            <div id="media1"><%= f.file_field :media %></div>
            <div id="media2"><%= f.text_field :video, { placeholder: 'Link to Video' } %></div>
         </div>
+     </div>
+
+     <div class="field">
+       <%= f.label :custom_path %><br />
+       <%= f.text_field :custom_path %>
      </div>
 </div>
 
