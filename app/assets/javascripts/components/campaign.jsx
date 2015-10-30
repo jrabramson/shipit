@@ -53,11 +53,14 @@ this.CampaignRefs =  React.createClass({
       <div className='ref_info ref_header'></div>
       <hr />
       {refs.map(function(ref) {
-        return <div key={ref.id} className='ref_row'>
+        return <div key={ref.id} className='ref_row' id={'ref' + ref.id}>
           <div className='ref_info'>{ref.first_name} {ref.last_name}<br/>{ref.email}<br/>{ref.company}</div>
           <div className='ref_info'>{ref.note}</div>
           <div className='ref_info'>{ref.referree_name}<br/>{ref.referree_email}</div>
-          <div className='ref_info'><img className='ref_push' src='/assets/api-icon.png' onClick={() => this._pushRef(ref.id)}/></div>
+          <div className='ref_info'>
+            <img className='ref_push' src='/assets/api-icon.png' onClick={() => this._pushRef(ref.id)}/>
+            <img className='ref_push' src='/assets/deny-icon.png' onClick={() => this._denyRef(ref.id)}/>
+          </div>
           <hr />
         </div> 
       }.bind(this))}
@@ -70,6 +73,17 @@ this.CampaignRefs =  React.createClass({
         data: { id: ref },
         success: function (data, msg, jqXHR) {
             $.gritter.add({ title: 'Success', text: msg });
+        }
+    });
+  },
+  _denyRef: function(ref) {
+    $.ajax({
+        type: 'POST',
+        url: '/' + this.props.path + '/referrals/' + ref + '/deny',
+        data: { id: ref },
+        success: function (data, msg, jqXHR) {
+            $('#ref' + ref).remove();
+            $.gritter.add({ title: 'Removed', text: msg });
         }
     });
   }

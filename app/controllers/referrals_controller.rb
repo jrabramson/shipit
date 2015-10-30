@@ -1,5 +1,5 @@
 class ReferralsController < ApplicationController
-  before_action :set_referral, only: [:show, :edit, :update, :destroy, :push]
+  before_action :set_referral, only: [:show, :edit, :update, :destroy, :push, :deny]
 
   def create
     @referral = Referral.new(referral_params)
@@ -27,7 +27,7 @@ class ReferralsController < ApplicationController
   def destroy
     @referral.destroy
     respond_to do |format|
-      format.html { redirect_to referrals_url, notice: 'Referral was successfully destroyed.' }
+      format.html { redirect_to referrals_url, notice: 'Referral was successfully removed.' }
       format.json { head :no_content }
     end
   end
@@ -40,6 +40,13 @@ class ReferralsController < ApplicationController
       else
         format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
       end
+    end
+  end
+
+  def deny
+    respond_to do |format|
+      @referral.destroy
+      format.json { render json: {status: 'Successfully Denied'} }
     end
   end
 

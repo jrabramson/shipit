@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :campaigns, param: :custom_path, path: '' do
     resources :referrals, only: [:create, :destroy, :update] do
       post 'push' => 'referrals#push'
+      post 'deny' => 'referrals#deny'
     end
   end
 

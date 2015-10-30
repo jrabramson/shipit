@@ -62,7 +62,7 @@
 
     <div class="field">
       <%= f.label :details %>
-      <%= f.cktext_area :details, { placeholder: 'Details', id: 'details' } %>
+      <%= f.cktext_area :details, { placeholder: 'Details', id: 'details', :ckeditor => {:language => 'en'} } %>
     </div>
   
     <div class="actions clearfix">
@@ -77,7 +77,7 @@
     <%= f.fields_for :rewards, :html => { class: 'reward' } do |reward| %>
       <div class='reward'>   
         <div class="field">
-          <%= reward.cktext_area :description, { placeholder: 'Description', :ckeditor => {:toolbar => 'tiny'} } %>
+          <%= reward.cktext_area :description, { placeholder: 'Description', :ckeditor => {:toolbar => 'tiny', :language => 'en'} } %>
         </div>    
         <div class="field">
           <%= reward.number_field :milestone, { placeholder: 'Milestone' } %>
