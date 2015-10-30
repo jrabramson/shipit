@@ -20,6 +20,7 @@
 </head>
 <body>
 	
+	<%= render partial: "layouts/nav" if current_contact %>
 	<%= yield %>
   <%= render partial: "layouts/footer" %>
 
