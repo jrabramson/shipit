@@ -17,11 +17,10 @@
 //= require gritter
 //= require react
 //= require react_ujs
-//= require ckeditor/init
 //= require jquery_nested_form
 //= require jquery-ui
 //= require components
-//= require_tree .
+//= require ckeditor/init
 
 $(document).ajaxError(function(event, request) {
   var msg = JSON.parse(request.responseText);
