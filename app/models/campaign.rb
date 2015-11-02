@@ -2,7 +2,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :contact
   has_many :referrals, inverse_of: :campaign
   has_many :rewards, inverse_of: :campaign
-  accepts_nested_attributes_for :rewards
+  accepts_nested_attributes_for :rewards, :allow_destroy => true
 
   validates_presence_of :expiry, :title, :goal, :custom_path
   validates_uniqueness_of :custom_path
