@@ -17,7 +17,7 @@ this.Campaign = React.createClass({
   },
   render: function() {
     var now = new Date();
-    var campaignStatus = this.props.refs.length == this.props.data.goal ? 'complete' :
+    var campaignStatus = this.props.refs.length >= this.props.data.goal ? 'complete' :
     Date.parse(this.props.data.expiry) < now ? 'expired' : '';
     return <div className='row_container' ref='row_container'>
       <div className={campaignStatus + ' manage_campaign_row'} onClick={this.showRefs}>
