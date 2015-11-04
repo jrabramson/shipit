@@ -80,7 +80,7 @@ $(document).on('page:load', ready)
 <!-- 		<a target="_blank" href='#'><i class='fa fa-envelope-square'></i></a>
 		<a target="_blank" href='#'><i class='fa fa-link'></i></a> -->
 		</div>
-		<% unless @campaign.expiry.past? || @campaign.referrals.count == @campaign.goal %>
+		<% unless @campaign.expiry.past? %>
 			<div class='campaign_refs'>
 				<span class='ref_banner'> Please Submit Your Referral Details Below </span>
 				<%= form_for [@campaign, Referral.new], remote: true do |f| %>
