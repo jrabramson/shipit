@@ -22,7 +22,7 @@ function getProgress() {
   $('#bar').css('right', function() {
     return $('#progress').width() - (increment*currentProgress) + "px";
   })
-  $('#progress p').html(currentProgress);
+  $('#progress p').html(currentProgress + ' / ' + goal);
 }
 ready = function() {
 	getProgress();
