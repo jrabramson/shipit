@@ -19,8 +19,9 @@ function getProgress() {
       dateStart: new Date(),
       dateEnd: new Date("<%= @campaign.expiry.to_time %>")
   });
+  var cap = (currentProgress >= goal) ? (increment*goal) : (increment*currentProgress)
   $('#bar').css('right', function() {
-    return $('#progress').width() - (increment*currentProgress) + "px";
+    return $('#progress').width() - (cap) + "px";
   })
   $('#progress p').html(currentProgress + ' / ' + goal);
 }
