@@ -10,6 +10,12 @@
     }
 }
 
+h1 {
+	&.center {
+		text-align: center;
+	}
+}
+
 #campaign_form {
 	float: left;
 	width: 70%;
@@ -345,6 +351,15 @@
 
 	.manage_table {
 		width: 100%;
+	}
+}
+
+.leaderboard_half {
+	width: 50%;
+	float: left;
+	text-align: center;
+	.leaderboard_campaign:first-of-type {
+		font-size: 20px;
 	}
 }
 

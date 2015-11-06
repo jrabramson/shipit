@@ -58,13 +58,18 @@
       <%= f.label :token %><br />
       <%= f.text_field :token %>
     </div>
+
+    <div class="field">
+      <%= f.label :junior %>
+      <%= f.check_box :junior %>
+    </div>
 </div>  
 
     <div class="field">
       <%= f.label :details %>
       <%= f.cktext_area :details, { placeholder: 'Details', id: 'details', :ckeditor => {:language => 'en'} } %>
     </div>
-  
+
     <div class="actions clearfix">
       <%= f.submit %>
     </div>

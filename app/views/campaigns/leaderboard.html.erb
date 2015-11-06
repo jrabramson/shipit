@@ -1,0 +1,19 @@
+<div class='container clearfix'>
+	<h1 class='center'>Leaderboard</h1>
+	<div class='leaderboard_half'>
+		<h2>Campaigns</h2>
+		<% @campaigns.each do |campaign| %>
+			<div class='leaderboard_campaign'>
+				<%= campaign.title %> - <%= campaign.progress %> <br />
+			</div>
+		<% end %>
+	</div>
+	<div class='leaderboard_half'>
+		<h2>Junior Campaigns</h2>
+		<% @juniors.each do |campaign| %>
+			<div class='leaderboard_campaign'>
+				<%= campaign.title %> - <%= campaign.progress %> <br />
+			</div>
+		<% end %>	
+	</div>
+</div>

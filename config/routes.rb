@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create, :edit, :update, :destroy]
   get 'manage' => 'campaigns#manage'
   get 'explore' => 'campaigns#browse'
+  get 'leaderboard' => 'campaigns#leaderboard'
   resources :campaigns, param: :custom_path, path: '' do
     resources :referrals, only: [:create, :destroy, :update] do
       post 'push' => 'referrals#push'

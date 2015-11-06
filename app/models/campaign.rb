@@ -36,6 +36,14 @@ class Campaign < ActiveRecord::Base
        : ''
   end
 
+  def self.not_expired
+    where('expiry > ?', Time.now)
+  end
+
+  def progress
+    referrals.count
+  end
+
   def to_param
     custom_path
   end

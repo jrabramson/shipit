@@ -2,6 +2,8 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_contact!, only: [:edit, :update, :destroy, :new, :create]
 
+  	attr_accessor :progress
+
   	def index
   	end
 
@@ -17,6 +19,11 @@ class CampaignsController < ApplicationController
     end
 
     def show
+    end
+
+    def leaderboard
+		@campaigns ||= Campaign.not_expired.where(junior: false).sort_by(&:progress).reverse
+		@juniors ||= Campaign.not_expired.where(junior: true).sort_by(&:progress).reverse
     end
 
     def manage
@@ -63,6 +70,6 @@ private
     end
 
     def campaign_params
-      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :video, :custom_path, rewards_attributes: [:id, :title, :note, :milestone, :icon, :description, :referree_name, :referree_email, :_destroy])
+      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :video, :junior, :custom_path, rewards_attributes: [:id, :title, :note, :milestone, :icon, :description, :referree_name, :referree_email, :_destroy])
     end
 end
