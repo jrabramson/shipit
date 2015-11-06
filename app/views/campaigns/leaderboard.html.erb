@@ -4,7 +4,9 @@
 		<h2>Campaigns</h2>
 		<% @campaigns.each do |campaign| %>
 			<div class='leaderboard_campaign'>
-				<%= campaign.title %> - <%= campaign.progress %> <br />
+				<%= link_to campaign do %>
+					<%= campaign.title %> - <%= campaign.progress %> <br />
+				<% end %>
 			</div>
 		<% end %>
 	</div>
@@ -12,7 +14,9 @@
 		<h2>Junior Campaigns</h2>
 		<% @juniors.each do |campaign| %>
 			<div class='leaderboard_campaign'>
-				<%= campaign.title %> - <%= campaign.progress %> <br />
+				<%= link_to campaign do %>
+					<%= campaign.title %> - <%= campaign.progress %> <br />
+				<% end %>
 			</div>
 		<% end %>	
 	</div>
