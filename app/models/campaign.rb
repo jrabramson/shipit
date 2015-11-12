@@ -16,7 +16,7 @@ class Campaign < ActiveRecord::Base
 
   has_attached_file :icon, 
   	:styles => { 
-  		:thumb => "100x100#" }, :default_url => "/missing.png"
+  		:thumb => "100x100#" }, :default_url => ActionController::Base.helpers.asset_path('missing.gif')
   validates_attachment_content_type :icon, :content_type => /\Aimage\/.*\Z/
 
   auto_html_for :video do
