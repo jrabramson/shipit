@@ -1,21 +1,37 @@
 <div class='container clearfix'>
 	<h1 class='center'>Leaderboard</h1>
-	<div class='leaderboard_half'>
-		<h2>Campaigns</h2>
+	<div class='leaderboard_half left'>
+		<h2>AE / RSM</h2>
 		<% @campaigns.each do |campaign| %>
 			<div class='leaderboard_campaign'>
 				<%= link_to campaign do %>
-					<%= campaign.title %> - <%= campaign.progress %> <br />
+					<%= image_tag(campaign.icon.url(:thumb)) %> 
+					<div class='leaderboard_meta clearfix'>
+						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
+						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
+					</div>
 				<% end %>
 			</div>
 		<% end %>
 	</div>
-	<div class='leaderboard_half'>
-		<h2>Junior Campaigns</h2>
+	<div class='leaderboard_count'>
+		<h2>&nbsp;</h2>
+		<% (1..[@campaigns.count,@juniors.count].max).each do |i| %>
+			<div class='leaderboard_campaign'>
+				<%= i %>
+			</div>
+		<% end %>
+	</div>
+	<div class='leaderboard_half right'>
+		<h2>SDR</h2>
 		<% @juniors.each do |campaign| %>
 			<div class='leaderboard_campaign'>
 				<%= link_to campaign do %>
-					<%= campaign.title %> - <%= campaign.progress %> <br />
+					<%= image_tag(campaign.icon.url(:thumb)) %> 
+					<div class='leaderboard_meta clearfix'>
+						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
+						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
+					</div>
 				<% end %>
 			</div>
 		<% end %>	

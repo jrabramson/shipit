@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106162911) do
+ActiveRecord::Schema.define(version: 20151111214926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20151106162911) do
     t.integer  "media_file_size"
     t.datetime "media_updated_at"
     t.boolean  "junior",             default: false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   add_index "campaigns", ["contact_id"], name: "index_campaigns_on_contact_id", using: :btree

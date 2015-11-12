@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+* { box-sizing: border-box; }
+
 #media_preview {
     width: 300px;
     height: 300px;
@@ -21,7 +23,7 @@ h1 {
 	width: 70%;
 	.campaign_form_piece {
 	    width: 50%;
-	    height: 315px;
+	    // height: 315px;
 	    float: left;
 	}
 	input {
@@ -65,7 +67,7 @@ h1 {
 		font-size: 16px;
 		h1 {
 			font-size: 30px;
-			line-height: 1em;
+			// line-height: 1em;
 			font-weight: 100;
 		}
 		.hero_referrals {
@@ -149,7 +151,7 @@ h1 {
             font-size: 30px;
             float: left;
             height: 60px;
-            line-height: 60px;
+            // line-height: 60px;
             margin-right: 10px;
         }
         h4 {
@@ -355,11 +357,92 @@ h1 {
 }
 
 .leaderboard_half {
-	width: 50%;
+	width: 45%;
+	float: left;
+	height: 18px;
+	&.right {
+		text-align: left;
+		.leaderboard_campaign a img {
+			float: left;
+		}
+		.leaderboard_meta {
+			.leaderboard_title {
+				float: left;
+			}
+			.leaderboard_refs {
+				float: left;
+			}
+		}
+	}
+	&.left {
+		text-align: right;
+		.leaderboard_campaign a img {
+			float: right;
+		}
+		.leaderboard_meta {
+			.leaderboard_title {
+				float: right;
+			}
+			.leaderboard_refs {
+				float: right;
+			}
+		}
+	}
+	h2 {
+		margin: 10px;
+		height: 45px;
+	}
+	.leaderboard_campaign {
+		clear: both;
+		margin-bottom: 5px;
+		font-size: 18px;
+		.leaderboard_meta {
+			margin-bottom: 20px;
+			padding-right: 10px;
+			.leaderboard_refs {
+				font-size: 14px;
+				clear: both;
+			}
+		}
+		a img {
+			width: 40px;
+			border-radius: 50%;
+		}
+		&:first-of-type {
+			font-size: 41px;
+			a img {
+				width: 75px;
+				border-radius: 50%;
+			}
+		}
+		&:nth-of-type(2) {
+			font-size: 25px;
+			a img {
+				width: 50px;
+				border-radius: 50%;
+			}
+		}
+	}	
+}
+
+.leaderboard_count {
+	width: 10%;
 	float: left;
 	text-align: center;
-	.leaderboard_campaign:first-of-type {
-		font-size: 20px;
+	font-size: 18px;
+	h2 {
+		margin: 10px;
+		height: 45px;
+	}
+	.leaderboard_campaign {
+		margin-bottom: 10px;
+		font-size: 30px;
+		&:first-of-type {
+			font-size: 70px;
+		}
+		&:nth-of-type(2) {
+			font-size: 48px;
+		}
 	}
 }
 

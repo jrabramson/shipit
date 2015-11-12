@@ -70,6 +70,6 @@ private
     end
 
     def campaign_params
-      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :video, :junior, :custom_path, rewards_attributes: [:id, :title, :note, :milestone, :icon, :description, :referree_name, :referree_email, :_destroy])
+      params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :icon, :video, :junior, :custom_path, rewards_attributes: [:id, :title, :note, :milestone, :icon, :description, :referree_name, :referree_email, :_destroy])
     end
 end

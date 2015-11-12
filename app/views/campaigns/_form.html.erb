@@ -33,9 +33,15 @@
      </div>
 
      <div class="field">
+       <%= f.label :icon %><br />
+       <%= f.file_field :icon %>
+     </div>
+
+     <div class="field">
        <%= f.label :custom_path %><br />
        <%= f.text_field :custom_path %>
      </div>
+
 </div>
 
 <div class='campaign_form_piece clearfix'>
@@ -60,17 +66,17 @@
     </div>
 
     <div class="field">
-      <%= f.label :junior %>
+      <%= f.label :junior, 'SDR' %>
       <%= f.check_box :junior %>
     </div>
 </div>  
 
-    <div class="field">
+    <div class="field" style="float:left;">
       <%= f.label :details %>
       <%= f.cktext_area :details, { placeholder: 'Details', id: 'details', :ckeditor => {:language => 'en'} } %>
     </div>
 
-    <div class="actions clearfix">
+    <div class="actions clearfix" style="float:left;">
       <%= f.submit %>
     </div>
   </div>

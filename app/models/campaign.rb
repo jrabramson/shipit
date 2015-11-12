@@ -8,11 +8,16 @@ class Campaign < ActiveRecord::Base
   validates_uniqueness_of :custom_path
 
   has_attached_file :media, 
-  	:styles => { 
-  		:large => '1000x1000>', 
-  		:medium => "300x300>", 
-  		:thumb => "100x100#" }
+    :styles => { 
+      :large => '1000x1000>', 
+      :medium => "300x300>", 
+      :thumb => "100x100#" }
   validates_attachment_content_type :media, :content_type => /\Aimage\/.*\Z/
+
+  has_attached_file :icon, 
+  	:styles => { 
+  		:thumb => "100x100#" }, :default_url => "/missing.png"
+  validates_attachment_content_type :icon, :content_type => /\Aimage\/.*\Z/
 
   auto_html_for :video do
     youtube(:width => 400, :height => 250)
@@ -22,6 +27,10 @@ class Campaign < ActiveRecord::Base
     self.video.present? ? self.video_html
       : self.media.exists? ? ActionController::Base.helpers.image_tag(self.media.url(:medium))
       : ActionController::Base.helpers.image_tag(ActionController::Base.helpers.asset_path('missing.gif'))
+  end
+
+  def icon_or_missing
+
   end
 
   def video_id
