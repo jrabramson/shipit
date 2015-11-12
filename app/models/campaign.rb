@@ -16,11 +16,15 @@ class Campaign < ActiveRecord::Base
 
   has_attached_file :icon, 
   	:styles => { 
-  		:thumb => "100x100#" }, :default_url => ActionController::Base.helpers.asset_path('missing.gif')
+  		:thumb => "100x100#" }, default_url: ':default_image_url'
   validates_attachment_content_type :icon, :content_type => /\Aimage\/.*\Z/
 
   auto_html_for :video do
     youtube(:width => 400, :height => 250)
+  end
+
+  Paperclip.interpolates :default_image_url do |attachment, style|
+    ActionController::Base.helpers.asset_path('missing.gif')
   end
 
   def chosen_media
