@@ -7,6 +7,7 @@
 		  <span> Title </span>
 		  <span> Progess/Goal </span>
 		  <span> Expiry </span>
+		  <span style='width: 10%;'></span>
 		</div>
 		<% @campaigns.each do |campaign| %>
 			<%= react_component 'Campaign', { data: campaign, refs: campaign.referrals, icon: campaign.chosen_media } %>
