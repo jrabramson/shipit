@@ -11,7 +11,7 @@ class Campaign < ActiveRecord::Base
     :styles => { 
       :large => '1000x1000>', 
       :medium => "300x300>", 
-      :thumb => "100x100#" }
+      :thumb => "100x100#" }, default_url: ':default_image_url'
   validates_attachment_content_type :media, :content_type => /\Aimage\/.*\Z/
 
   has_attached_file :icon, 
@@ -29,8 +29,7 @@ class Campaign < ActiveRecord::Base
 
   def chosen_media
     self.video.present? ? self.video_html
-      : self.media.exists? ? ActionController::Base.helpers.image_tag(self.media.url(:medium))
-      : ActionController::Base.helpers.image_tag(ActionController::Base.helpers.asset_path('missing.gif'))
+      : ActionController::Base.helpers.image_tag(self.media.url(:medium))
   end
 
   def icon_or_missing
