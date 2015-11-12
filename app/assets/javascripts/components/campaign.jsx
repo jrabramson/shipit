@@ -15,6 +15,19 @@ this.Campaign = React.createClass({
     this.setState({ selected: !this.state.selected })
     $(this.refs.row_container.getDOMNode()).toggleClass('in');
   },
+  deleteCampaign: function(event) {
+    var choice = confirm("Are you sure you want to delete this campaign?")
+    if (choice) {
+      console.log(choice)
+      $.ajax({
+          data: {custom_path: this.props.data.custom_path},
+          url: '/' + this.props.data.custom_path,
+          type: "DELETE"
+      }).done(function() {
+        location.reload();
+      });
+    }
+  },
   render: function() {
     var now = new Date();
     var campaignStatus = this.props.refs.length >= this.props.data.goal ? 'complete' :
@@ -37,7 +50,7 @@ this.Campaign = React.createClass({
         <a href={'/' + this.props.data.custom_path}>Show</a><br/>
         <a href={'/' + this.props.data.custom_path + '/edit/'}>Edit</a><br/>
         <a href={'/csv.csv?csv_id=' + this.props.data.id}>CSV</a><br/>
-        <a rel="nofollow" data-method="delete" href={'/' + this.props.data.custom_path}>Delete</a>
+        <a onClick={this.deleteCampaign}>Delete</a>
       </div>
       {this.state.selected ? <CampaignRefs refs={this.props.refs} path={this.props.data.custom_path} /> : ''}
   	</div>

@@ -52,7 +52,7 @@ class CampaignsController < ApplicationController
     def destroy
     	@campaign.destroy
     	respond_to do |format|
-    	  format.html { redirect_to manage_url, notice: 'Campaign was successfully destroyed.' }
+    	  # format.html { redirect_to manage_url, notice: 'Campaign was successfully destroyed.' }
     	  format.json { head :no_content }
     	end
     end
