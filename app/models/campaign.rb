@@ -23,6 +23,17 @@ class Campaign < ActiveRecord::Base
     youtube(:width => 400, :height => 250)
   end
 
+  def self.to_csv id
+    CSV.generate do |csv|
+      where(id: id).each do |campaign|
+        csv << campaign.referrals.column_names
+        campaign.referrals.all.each do |ref|
+          csv << ref.attributes.values_at(*campaign.referrals.column_names)
+        end
+      end
+    end
+  end
+
   Paperclip.interpolates :default_image_url do |attachment, style|
     ActionController::Base.helpers.asset_path('missing.gif')
   end

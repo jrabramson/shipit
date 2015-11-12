@@ -1,6 +1,7 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_contact!, only: [:edit, :update, :destroy, :new, :create]
+  require 'csv'
 
   	attr_accessor :progress
 
@@ -19,6 +20,12 @@ class CampaignsController < ApplicationController
     end
 
     def show
+    end
+
+    def csv
+    	respond_to do |format|
+	      format.csv { send_data current_contact.campaigns.to_csv(params[:csv_id]) }
+	    end
     end
 
     def leaderboard

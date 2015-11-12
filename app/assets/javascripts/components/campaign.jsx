@@ -36,6 +36,7 @@ this.Campaign = React.createClass({
       <div className='manage_campaign_cell manage_control'>
         <a href={'/' + this.props.data.custom_path}>Show</a><br/>
         <a href={'/' + this.props.data.custom_path + '/edit/'}>Edit</a><br/>
+        <a href={'/csv.csv?csv_id=' + this.props.data.id}>CSV</a><br/>
         <a rel="nofollow" data-method="delete" href={'/' + this.props.data.custom_path}>Delete</a>
       </div>
       {this.state.selected ? <CampaignRefs refs={this.props.refs} path={this.props.data.custom_path} /> : ''}
