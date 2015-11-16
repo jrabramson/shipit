@@ -370,6 +370,7 @@ h1 {
 			float: left;
 		}
 		.leaderboard_meta {
+			padding-left: 10px;
 			.leaderboard_title {
 				float: left;
 			}
@@ -384,6 +385,7 @@ h1 {
 			float: right;
 		}
 		.leaderboard_meta {
+			padding-right: 10px;
 			.leaderboard_title {
 				float: right;
 			}
@@ -402,7 +404,6 @@ h1 {
 		font-size: 18px;
 		.leaderboard_meta {
 			margin-bottom: 20px;
-			padding-right: 10px;
 			.leaderboard_refs {
 				font-size: 14px;
 				clear: both;
