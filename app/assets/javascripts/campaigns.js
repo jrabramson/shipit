@@ -11,7 +11,9 @@ ready = function() {
   $(document).ready(function() {
   	var $grid = $('.grid').imagesLoaded( function() {
   	  $grid.isotope({
-  	    itemSelector: '.grid-item'
+  	    itemSelector: '.grid-item',
+        layoutMode: 'fitRows',
+        masonry: { columnWidth: $('.grid').width() / 5 - 20 }
   	  });
   	});
   });
@@ -32,6 +34,13 @@ ready = function() {
     });
   });
 }
+
+$(window).smartresize(function(){
+  $('.grid').isotope({
+    // update columnWidth to a percentage of container width
+    masonry: { columnWidth: $container.width() / 5 }
+  });
+});
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
