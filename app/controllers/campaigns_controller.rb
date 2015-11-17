@@ -9,7 +9,7 @@ class CampaignsController < ApplicationController
   	end
 
   	def browse
-  		@campaigns = Campaign.all.shuffle
+  		@campaigns = Campaign.not_expired.shuffle
   	end
 
   	def new
