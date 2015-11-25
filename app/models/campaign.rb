@@ -59,7 +59,7 @@ class Campaign < ActiveRecord::Base
        : ''
   end
 
-  def self.not_expired
+  def self.visible
     where('expiry > ?', Time.now)
   end
 

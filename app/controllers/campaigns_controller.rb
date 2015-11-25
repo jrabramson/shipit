@@ -9,7 +9,7 @@ class CampaignsController < ApplicationController
   	end
 
   	def browse
-  		@campaigns = Campaign.not_expired.shuffle
+  		@campaigns = Campaign.visible.shuffle
   	end
 
   	def new
@@ -29,8 +29,9 @@ class CampaignsController < ApplicationController
     end
 
     def leaderboard
-  		@campaigns ||= Campaign.not_expired.where(junior: false).sort_by(&:progress).reverse
-  		@juniors ||= Campaign.not_expired.where(junior: true).sort_by(&:progress).reverse
+  		@campaigns ||= Campaign.visible.where(kind: 'AE / RSM').sort_by(&:progress).reverse
+      @juniors   ||= Campaign.visible.where(kind: 'SDR').sort_by(&:progress).reverse
+  		@marketing ||= Campaign.visible.where(kind: 'Marketing').sort_by(&:progress).reverse
     end
 
     def manage

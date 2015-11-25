@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111214926) do
+ActiveRecord::Schema.define(version: 20151125041442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,24 +19,24 @@ ActiveRecord::Schema.define(version: 20151111214926) do
   create_table "campaigns", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "goal"
-    t.date     "expiry",                             null: false
+    t.date     "expiry",                                  null: false
     t.string   "title"
     t.string   "hub"
     t.string   "token"
     t.string   "video"
-    t.string   "custom_path",                        null: false
+    t.string   "custom_path",                             null: false
     t.text     "details"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "media_file_name"
     t.string   "media_content_type"
     t.integer  "media_file_size"
     t.datetime "media_updated_at"
-    t.boolean  "junior",             default: false
     t.string   "icon_file_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.string   "kind",               default: "AE / RSM"
   end
 
   add_index "campaigns", ["contact_id"], name: "index_campaigns_on_contact_id", using: :btree

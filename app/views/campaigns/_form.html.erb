@@ -66,8 +66,20 @@
     </div>
 
     <div class="field">
-      <%= f.label :junior, 'SDR' %>
-      <%= f.check_box :junior %>
+      <table> 
+       <tr>
+         <td><%= f.label :kind, "AE / RSM" %></td>
+         <td><%= f.radio_button(:kind, "AE / RSM") %></td>
+       </tr>
+       <tr>
+         <td><%= f.label :kind, "SDR" %></td>
+         <td><%= f.radio_button(:kind, "SDR") %></td>
+       </tr>
+       <tr>
+         <td><%= f.label :kind, "Marketing" %></td>
+         <td><%= f.radio_button(:kind, "Marketing") %></td>
+       </tr>
+      </table>
     </div>
 </div>  
 

@@ -15,8 +15,5 @@ Rails.application.routes.draw do
       post 'deny' => 'referrals#deny'
     end
   end
-
-  get '/manage', to: 'campaigns#manage'
-  get '/explore', to: 'campaigns#browse'
-
+  
 end

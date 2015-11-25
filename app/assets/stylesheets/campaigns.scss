@@ -360,12 +360,19 @@ h1 {
 	}
 }
 
-.leaderboard_half {
-	width: 45%;
+#leaderboard {
+	h1 {
+		padding-left: 43px;
+	}
+}
+
+.leaderboard_section {
+	width: 30%;
 	float: left;
 	height: 18px;
 	&.right {
 		text-align: left;
+		float: left;
 		.leaderboard_campaign a img {
 			float: left;
 		}
@@ -396,7 +403,10 @@ h1 {
 	}
 	h2 {
 		margin: 10px;
+		padding: 0;
 		height: 45px;
+		border-bottom: 3px solid #999;
+		line-height: 48px;
 	}
 	.leaderboard_campaign {
 		clear: both;
@@ -412,12 +422,15 @@ h1 {
 		a img {
 			width: 40px;
 			border-radius: 50%;
+		    padding: 0px 18px;
+		    box-sizing: content-box;
 		}
 		&:first-of-type {
 			font-size: 41px;
 			a img {
 				width: 75px;
 				border-radius: 50%;
+				padding: 0;
 			}
 		}
 		&:nth-of-type(2) {
@@ -425,6 +438,8 @@ h1 {
 			a img {
 				width: 50px;
 				border-radius: 50%;
+				padding: 0px 13px;
+				box-sizing: content-box;
 			}
 		}
 	}	
