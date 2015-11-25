@@ -2,7 +2,7 @@
 	<h1 class=''>LEADERBOARD</h1>
 	<div class='leaderboard_count'>
 		<h2>&nbsp;</h2>
-		<% (1..[@campaigns.count,@juniors.count].max).each do |i| %>
+		<% (1..[@campaigns.count,@juniors.count,@marketing.count].max).each do |i| %>
 			<div class='leaderboard_campaign'>
 				<%= i %>
 			</div>
