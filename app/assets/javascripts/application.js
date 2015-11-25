@@ -40,12 +40,14 @@ ready = function() {
    $("#tabs").tabs();
 
    cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-    $('.leaderboard_campaign a img').each(function(i, img) {
-      $(img).attr('src', '/assets/devil.jpg');
-    });
-    $('.leaderboard_title').each(function(i, title) {
-      $(title).html('SATAN');
-    });
+    // $('.leaderboard_campaign a img').each(function(i, img) {
+    //   $(img).attr('src', '/assets/devil.jpg');
+    // });
+    // $('.leaderboard_title').each(function(i, title) {
+    //   $(title).html('SATAN');
+    // });
+
+    window.location.assign('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
    });
 }
 
