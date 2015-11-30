@@ -34,6 +34,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def self.typed_collection
+    {
+        "AE / RSM": Campaign.visible.where(kind: 'AE / RSM').sort_by(&:progress).reverse,
+        "SDR": Campaign.visible.where(kind: 'SDR').sort_by(&:progress).reverse,
+        "Marketing": Campaign.visible.where(kind: 'Marketing').sort_by(&:progress).reverse
+    }
+  end
+
   Paperclip.interpolates :default_image_url do |attachment, style|
     ActionController::Base.helpers.asset_path('missing.gif')
   end
@@ -41,10 +49,6 @@ class Campaign < ActiveRecord::Base
   def chosen_media
     self.video.present? ? self.video_html
       : ActionController::Base.helpers.image_tag(self.media.url(:medium))
-  end
-
-  def icon_or_missing
-
   end
 
   def video_id

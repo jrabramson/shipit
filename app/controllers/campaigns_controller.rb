@@ -29,9 +29,7 @@ class CampaignsController < ApplicationController
     end
 
     def leaderboard
-  		@campaigns ||= Campaign.visible.where(kind: 'AE / RSM').sort_by(&:progress).reverse
-      @juniors   ||= Campaign.visible.where(kind: 'SDR').sort_by(&:progress).reverse
-  		@marketing ||= Campaign.visible.where(kind: 'Marketing').sort_by(&:progress).reverse
+  		@collection ||= Campaign.typed_collection
     end
 
     def manage

@@ -2,52 +2,27 @@
 	<h1 class=''>LEADERBOARD</h1>
 	<div class='leaderboard_count'>
 		<h2>&nbsp;</h2>
-		<% (1..[@campaigns.count,@juniors.count,@marketing.count].max).each do |i| %>
+		<% (1..[@collection[:"AE / RSM"].count, @collection[:"SDR"].count, @collection[:"Marketing"].count].max).each do |i| %>
 			<div class='leaderboard_campaign'>
 				<%= i %>
 			</div>
 		<% end %>
 	</div>
-	<div class='leaderboard_section right'>
-		<h2>AE / RSM</h2>
-		<% @campaigns.each do |campaign| %>
-			<div class='leaderboard_campaign'>
-				<%= link_to campaign do %>
-					<%= image_tag(campaign.icon.url(:thumb)) %> 
-					<div class='leaderboard_meta clearfix'>
-						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
-						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
-					</div>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-	<div class='leaderboard_section right'>
-		<h2>SDR</h2>
-		<% @juniors.each do |campaign| %>
-			<div class='leaderboard_campaign'>
-				<%= link_to campaign do %>
-					<%= image_tag(campaign.icon.url(:thumb)) %> 
-					<div class='leaderboard_meta clearfix'>
-						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
-						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
-					</div>
-				<% end %>
-			</div>
-		<% end %>	
-	</div>
-	<div class='leaderboard_section right'>
-		<h2>Marketing</h2>
-		<% @marketing.each do |campaign| %>
-			<div class='leaderboard_campaign'>
-				<%= link_to campaign do %>
-					<%= image_tag(campaign.icon.url(:thumb)) %> 
-					<div class='leaderboard_meta clearfix'>
-						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
-						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
-					</div>
-				<% end %>
-			</div>
-		<% end %>	
-	</div>
-</div>
+	<% @collection.each do |type, campaigns| %>
+		<div class='leaderboard_section right'>
+				<h2><%= type %></h2>
+				<% campaigns.each do |campaign| %>
+				<div class='leaderboard_campaign'>
+					<%= link_to campaign do %>
+						<%= image_tag(campaign.icon.url(:thumb)) %> 
+						<div class='leaderboard_meta clearfix'>
+							<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
+							<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</divz>
+	
