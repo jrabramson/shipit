@@ -17,6 +17,7 @@ this.Campaign = React.createClass({
   },
   deleteCampaign: function(event) {
     var choice = confirm("Are you sure you want to delete this campaign?")
+    var comp = this;
     if (choice) {
       console.log(choice)
       $.ajax({
@@ -24,7 +25,7 @@ this.Campaign = React.createClass({
           url: '/' + this.props.data.custom_path,
           type: "DELETE"
       }).done(function() {
-        location.reload();
+          comp.getDOMNode().remove();
       });
     }
   },
