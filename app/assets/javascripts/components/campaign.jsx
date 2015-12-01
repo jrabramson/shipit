@@ -32,12 +32,13 @@ this.Campaign = React.createClass({
     var now = new Date();
     var campaignStatus = this.props.refs.length >= this.props.data.goal ? 'complete' :
     Date.parse(this.props.data.expiry) < now ? 'expired' : '';
-    return <div className='row_container' ref='row_container'>
+    return <div key={this.props.data.id} className='row_container' ref='row_container'>
       <div className={campaignStatus + ' manage_campaign_row'} onClick={this.showRefs}>
         <div className='manage_campaign_cell'>
+          <img src={this.props.icon} />
         </div>          
         <div className='manage_campaign_cell'>
-          {this.props.data.title}
+          {this.props.data.custom_path}
         </div>             
         <div className='manage_campaign_cell'>
           {this.props.refs.length} / {this.props.data.goal}

@@ -1,16 +1,8 @@
 <div class='container'>
 	<div class='manage_table'>
 		<h2>My Campaigns<span class='right'><%= link_to "New Campaign", new_campaign_path %></span></h2>
-		
-		<div class='table_header'> 
-		  <span></span>
-		  <span> Title </span>
-		  <span> Progess/Goal </span>
-		  <span> Expiry </span>
-		  <span style='width: 10%;'></span>
-		</div>
-		<% @campaigns.each do |campaign| %>
-			<%= react_component 'Campaign', { data: campaign, refs: campaign.referrals, icon: campaign.chosen_media } %>
-		<% end %>
+
+		<%= react_component 'Manager', { data: @campaigns } %>
+
 	</div>
 </div>

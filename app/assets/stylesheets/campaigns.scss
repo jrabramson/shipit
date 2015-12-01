@@ -247,6 +247,20 @@ h1 {
     border-radius: 3px;
 }
 
+.manage_filter {
+    height: 60px;
+    border-bottom: 2px solid #999;
+    margin-bottom: 30px;
+    .filter_section {
+        width: 200px;
+        display: inline-block;
+	    select {
+	        width: 140px;
+	        margin: 3px 0;
+	        display: block;
+	    }
+    }
+}
 
 .manage_table {
 	width: 100%;
@@ -254,7 +268,7 @@ h1 {
 	.table_header {
 	    display: inline-table;
 	    // border-bottom: solid #999 1px;
-		width: 100%;
+		width: 90%;
 		span {
 			display: table-cell;
 			width: calc(100% / 5);
@@ -288,7 +302,7 @@ h1 {
 	    background-color: white;
 	    display: inline-table;
 	    width: 90%;
-	    height: 80px;
+	    height: 100px;
 
 		&.expired {
 			background: #EF8282;
@@ -308,11 +322,17 @@ h1 {
 	    	display: table-cell;
 	    	vertical-align: middle;
 	    	padding: 10px 0;
+	    	&:first-of-type {
+	    		padding-left: 20px;
+	    	}
 	    	.manage_icon {
 	    		width: 60px;
 	    		height: 60px;
 	    		margin: 0 auto;
 	    		display: block;
+	    	}
+	    	img {
+	    	    height: 50px;
 	    	}
 	    }
 

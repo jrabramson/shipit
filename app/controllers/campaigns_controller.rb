@@ -33,7 +33,12 @@ class CampaignsController < ApplicationController
     end
 
     def manage
-    	@campaigns ||= current_contact.campaigns
+    	@campaigns ||= current_contact.campaigns.map { |ca| {
+          campaign: ca, 
+          referrals: ca.referrals,
+          icon: ca.icon.url(:thumb) 
+        } 
+      }
     end
 
     def update
