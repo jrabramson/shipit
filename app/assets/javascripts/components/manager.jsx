@@ -4,7 +4,8 @@ this.Manager = React.createClass({
 	    campaigns: this.props.data,
 	    filter: '',
 	    expired: false,
-	    completed: false
+	    completed: false,
+	    selected: -1
 	  };
 	},
 	getDefaultProps: function() {
@@ -18,7 +19,7 @@ this.Manager = React.createClass({
   				<div className='filter_section'>
   					Filter Campaign Type 
   					<select onChange={this._applyFilter} value={this.state.filter}>
-  						<option> </option>
+  						<option value=''>All</option>
   						<option value='AE / RSM'>AE / RSM</option>
   						<option value='SDR'>SDR</option>
   						<option value='Marketing'>Marketing</option>
@@ -26,7 +27,7 @@ this.Manager = React.createClass({
   					</select>
   				</div>
   				<div className='filter_section'>
-  					Hide Campaigns: <br />
+  					Toggle Hidden <br />
   					<input type='checkbox' checked={this.state.expired} onChange={this._toggleExpired} /> Expired <br />
   					<input type='checkbox' checked={this.state.completed} onChange={this._toggleCompleted} /> Completed
   				</div>
@@ -37,19 +38,30 @@ this.Manager = React.createClass({
 			  <span> Progess/Goal </span>
 			  <span> Expiry </span>
 			</div>
-			  {this._filteredCampaigns().map(function(d) {
-			  	return <Campaign key={d.campaign.id} data={d.campaign} refs={d.referrals} icon={d.icon} />
-			  })}
+			  {this._filteredCampaigns().map(function(d, i) {
+			  	return <Campaign 
+			  		onSelect={this._showRefs} 
+			  		key={d.campaign.id} 
+			  		data={d.campaign}
+			  		i={i}
+			  		selected={this.state.selected == i} 
+			  		refs={d.referrals} 
+			  		icon={d.icon} 
+			  	/>
+			  }, this)}
 			</div>
 	},
+	_showRefs: function(w, se) {
+	    this.setState({ selected: this.state.selected == w ? -1 : w });
+	},
 	_applyFilter: function() {
-		this.setState({filter: event.target.value});
+		this.setState({ filter: event.target.value });
 	},
 	_toggleCompleted: function() {
-		this.setState({completed: !this.state.completed});
+		this.setState({ completed: !this.state.completed });
 	},
 	_toggleExpired: function() {
-		this.setState({expired: !this.state.expired});
+		this.setState({ expired: !this.state.expired });
 	},
  	_filteredCampaigns: function() {
 		return this.state.campaigns.filter(function(c) {
