@@ -30,7 +30,7 @@ ready = function() {
 	$(document).ajaxSuccess(function(event, request) {
 	  var msg = JSON.parse(request.responseText);
 	  if (msg) {
-	  	$.gritter.add({ title: 'Success', text: msg.status });
+	  	notie.alert(1, msg.status, 2.5);
 	    currentProgress++;
 	  	getProgress();
 	  	$('#new_referral')[0].reset();

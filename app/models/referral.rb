@@ -5,7 +5,7 @@ class Referral < ActiveRecord::Base
 	belongs_to :campaign
 
 	def push_lead
-		return unless campaign.token?
+	 	errors.add(:base, "Hub not integrated for this campaign") and return [false, false] unless campaign.token? 
 		conn = Faraday.new("https://#{campaign.hub}.influitiveqa.com/api/")
 		conn.authorization :Token, :token => campaign.token
 		conn.headers['Content-Type'] = 'application/json'

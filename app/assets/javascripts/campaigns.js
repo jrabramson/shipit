@@ -20,12 +20,10 @@ ready = function() {
       var reader = new FileReader();
       reader.onload = function(file) {
         var img = new Image();
-        console.log(file);
         img.src = file.target.result;
         $('#media_preview').html(img);
       }
       reader.readAsDataURL(image);
-      console.log(files);
     });
   });
 }

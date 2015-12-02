@@ -89,7 +89,7 @@ this.CampaignRefs =  React.createClass({
         url: '/' + this.props.path + '/referrals/' + ref + '/push',
         data: { id: ref },
         success: function (data, msg, jqXHR) {
-            $.gritter.add({ title: 'Success', text: msg });
+            notie.alert(1, "Successfully pushed to hub", 2.5);
         }
     });
   },
@@ -100,7 +100,7 @@ this.CampaignRefs =  React.createClass({
         data: { id: ref },
         success: function (data, msg, jqXHR) {
             $('#ref' + ref).remove();
-            $.gritter.add({ title: 'Removed', text: msg });
+            notie.alert(3, "Removed", 2.5);
         }
     });
   }

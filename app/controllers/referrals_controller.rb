@@ -35,7 +35,7 @@ class ReferralsController < ApplicationController
   def push
     respond_to do |format|
       lead_push = @referral.push_lead
-      if lead_push.all? { |r| r.status == 201 }
+      if lead_push.all? { |r| r && r.status == 201 }
         format.json { render json: {status: 'Successfully Sent'} }
       else
         format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
