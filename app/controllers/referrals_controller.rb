@@ -5,7 +5,7 @@ class ReferralsController < ApplicationController
     @referral = Referral.new(referral_params)
     respond_to do |format|
       if @referral.save
-        format.json { render json: {status: 'Referral created', progress: @referral.amount } }
+        format.json { render json: {status: 'Thanks for your referral. We have received it and will be in touch soon.', progress: @referral.amount } }
       else
         format.json { render json: @referral.errors.full_messages, status: :unprocessable_entity}
       end
