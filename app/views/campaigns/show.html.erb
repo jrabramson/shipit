@@ -15,15 +15,15 @@ function getProgress() {
   var increment = $('#progress').width()/goal;
   var countdown = new Countdown({
       selector: '#countdown',
-      msgPattern: "<div class='time_section'>{days}<br /> DAYS</div> <div class='time_section'>{hours}<br /> HOURS</div> <div class='time_section'>{minutes}<br /> MINUTES</div>",
+      msgPattern: "<div class='time_section'>{days}</div>",
       dateStart: new Date(),
       dateEnd: new Date(Date.parse("<%= @campaign.expiry %>"))
   });
   var cap = (currentProgress >= goal) ? (increment*goal) : (increment*currentProgress)
   $('#bar').css('right', function() {
-    return $('#progress').width() - (cap) + "px";
+    return $('#progress').width() - (cap - 10) + "px";
   })
-  $('#progress p').html(currentProgress + ' / ' + goal);
+  $('#progress span').html(currentProgress + ' / ' + goal);
 }
 ready = function() {
 	getProgress();
@@ -42,7 +42,7 @@ $(document).ready(ready)
 $(document).on('page:load', ready)
 </script>
 
-<div id='campaign_hero'>
+<header id='campaign_hero'>
 	<div class='hero_background'></div>
 	<div class='container clearfix'>
 		<div class='campaign_media'>
@@ -50,34 +50,30 @@ $(document).on('page:load', ready)
 		</div>
 		<div class='hero_details'>
 			<h1><%= @campaign.title %></h1>
-			<span class='hero_bold'>GOAL</span>
-			<p class='hero_referrals'>
-				<span><%= @campaign.goal %> Referrals</span>
-			</p>
-			<span class='hero_bold'>COUNTDOWN</span>
+			<div id='progress'>
+				<p><span><%= @campaign.referrals.count %></span>&nbsp;referrals</p>
+				<div id='bar' data-value='<%= @campaign.referrals.count %>'></div>
+			</div>
 			<p id='countdown'></p>
+			<span class='hero_bold'>days to go</span>
 		</div>
 	</div>
-</div>
-
+</header>
+<% if @campaign.contact == current_contact %>
+	<div class='adminbar'>
+		<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
+	</div>
+<% end %>
 <div class='container'>
 	<div class='campaign_content'>
 		<p><%= @campaign.details.html_safe %></p>
 	</div>
-	<% if @campaign.contact == current_contact %>
-		<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
-	<% end %>
 	<div class='campaign_meta'>
-		<span class='content_bold'>GOAL</span>
-		<div id='progress'>
-			<div id='bar' data-value='<%= @campaign.referrals.count %>'></div>
-			<p><%= @campaign.referrals.count %></p>
-		</div>
-		<span class='content_bold'>SHARE</span>
+		<!-- <span class='content_bold'>SHARE</span> -->
 		<div class='content_share'>
-		<a target="_blank" href='http://www.facebook.com/sharer/sharer.php?u=<%=u campaign_url(@campaign) %>&t=<%= @campaign.title %>'><i class='fa fa-facebook-square'></i></a>
-		<a target="_blank" href='http://www.linkedin.com/shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>&source=leadstarter.influitive.com'><i class='fa fa-linkedin-square'></i></a>
-		<a target="_blank" href='http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>'><i class='fa fa-twitter-square'></i></a>
+		<a target="_blank" href='http://www.facebook.com/sharer/sharer.php?u=<%=u campaign_url(@campaign) %>&t=<%= @campaign.title %>'><i class='fa fa-facebook-square'></i> <span>Share</span></a>
+		<a target="_blank" href='http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>'><i class='fa fa-twitter-square'></i> <span>Tweet</span></a>
+		<a target="_blank" href='http://www.linkedin.com/content_shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>&source=leadstarter.influitive.com'><i class='fa fa-linkedin-square'></i> Share</a>
 <!-- 		<a target="_blank" href='#'><i class='fa fa-envelope-square'></i></a>
 		<a target="_blank" href='#'><i class='fa fa-link'></i></a> -->
 		</div>
@@ -128,7 +124,7 @@ $(document).on('page:load', ready)
 			</div>
 		<% end %>
 		<% if @campaign.rewards.any? %>
-			<span class='content_bold'> REWARDS </span>
+			<!-- <span class='content_bold'> REWARDS </span> -->
 			<% @campaign.rewards.each do |r| %>
 				<div class="campaign_reward clearfix">
 					<span class="reward_milestone"><%= r.milestone %></span>

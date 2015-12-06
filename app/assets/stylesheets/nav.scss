@@ -71,6 +71,12 @@ nav {
 				width: 25px;
 				border-radius: 50%;
 			}
+			i {
+			    font-size: 13px;
+			    color: black;
+			    float: left;
+			    line-height: 30px;
+			}
 		}
 		.profile_nav {
 		    position: absolute;
@@ -88,7 +94,9 @@ nav {
 		    	width: 100%;
 		    	a {
 		    		padding: 5px 10px;
+	    		    color: black;
 	    		    width: 100%;
+	    		    font-size: 13px;
 		    	}
 		    	&:not(.bar):hover {
 		    		background-color: #fab515;
