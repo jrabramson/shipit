@@ -19,10 +19,16 @@ function getProgress() {
       dateStart: new Date(),
       dateEnd: new Date(Date.parse("<%= @campaign.expiry %>"))
   });
-  var cap = (currentProgress >= goal) ? (increment*goal) : (increment*currentProgress)
+  var completed = currentProgress >= goal;
+  var cap = completed ? increment * goal : increment*currentProgress
+
   $('#bar').css('right', function() {
-    return $('#progress').width() - (cap - 10) + "px";
-  })
+    return $('#progress').width() - (cap - 5) + "px";
+  });
+  if (completed) {
+  	$('#bar').css('border-radius', '28px');
+  }
+
   $('#progress span').html(currentProgress + ' / ' + goal);
 }
 ready = function() {
@@ -69,13 +75,10 @@ $(document).on('page:load', ready)
 		<p><%= @campaign.details.html_safe %></p>
 	</div>
 	<div class='campaign_meta'>
-		<!-- <span class='content_bold'>SHARE</span> -->
 		<div class='content_share'>
-		<a target="_blank" href='http://www.facebook.com/sharer/sharer.php?u=<%=u campaign_url(@campaign) %>&t=<%= @campaign.title %>'><i class='fa fa-facebook-square'></i> <span>Share</span></a>
-		<a target="_blank" href='http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>'><i class='fa fa-twitter-square'></i> <span>Tweet</span></a>
-		<a target="_blank" href='http://www.linkedin.com/content_shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>&source=leadstarter.influitive.com'><i class='fa fa-linkedin-square'></i> Share</a>
-<!-- 		<a target="_blank" href='#'><i class='fa fa-envelope-square'></i></a>
-		<a target="_blank" href='#'><i class='fa fa-link'></i></a> -->
+		<a target="_blank" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=<%=u campaign_url(@campaign) %>&t=<%= @campaign.title %>','name','width=600,height=400')"><i class='fa fa-facebook-square'></i> <span>Share</span></a>
+		<a target="_blank" onclick="window.open('http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>','name','width=600,height=400')"><i class='fa fa-twitter-square'></i> <span>Tweet</span></a>
+		<a target="_blank" onclick="window.open('http://www.linkedin.com/content_shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>','name','width=600,height=400')"><i class='fa fa-linkedin-square'></i> Share</a>
 		</div>
 		<% unless @campaign.expiry.past? %>
 			<div class='campaign_refs'>
