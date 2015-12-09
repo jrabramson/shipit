@@ -28,7 +28,7 @@
 
       // Messages
       msgBefore    : "Be ready!",
-      msgAfter     : "--",
+      msgAfter     : "",
       msgPattern   : "{days} days, {hours} hours, {minutes} minutes and {seconds} seconds left.",
 
       // Callbacks
