@@ -15,12 +15,12 @@ function getProgress() {
   var increment = $('#progress').width()/goal;
   var countdown = new Countdown({
       selector: '#countdown',
-      msgPattern: "<div class='time_section'>{days}</div>",
+      msgPattern: "<div class='time_section'>{days}</div><div class='time_section'>{hours}</div><div class='time_section'>{minutes}</div><br/><div><div class='time_desc'>days</div><div class='time_desc'>hours</div> <div class='time_desc'>minutes</div></div>",
       dateStart: new Date(),
       dateEnd: new Date(Date.parse("<%= @campaign.expiry %>"))
   });
   var completed = currentProgress >= goal;
-  var cap = completed ? increment * goal : increment*currentProgress
+  var cap = completed ? increment * goal : increment * currentProgress;
 
   $('#bar').css('right', function() {
     return $('#progress').width() - (cap - 5) + "px";
@@ -29,7 +29,7 @@ function getProgress() {
   	$('#bar').css('border-radius', '28px');
   }
 
-  $('#progress span').html(currentProgress + ' / ' + goal);
+  $('#progress .current').html(currentProgress + " " + pluralize('referral', currentProgress));
 }
 ready = function() {
 	getProgress();
@@ -57,11 +57,14 @@ $(document).on('page:load', ready)
 		<div class='hero_details'>
 			<h1><%= @campaign.title %></h1>
 			<div id='progress'>
-				<p><span><%= @campaign.referrals.count %></span>&nbsp;referrals</p>
+				<p>
+					<span class='current'><%= @campaign.referrals.count %></span>
+					<span class='progess_goal'>submitted of <%= @campaign.goal %> goal</span>
+				</p>
 				<div id='bar' data-value='<%= @campaign.referrals.count %>'></div>
 			</div>
 			<p id='countdown'></p>
-			<span class='hero_bold'>days to go</span>
+			<!-- <span class='hero_bold'>time left</span> -->
 		</div>
 	</div>
 </header>
@@ -106,7 +109,8 @@ $(document).on('page:load', ready)
 					</div>
 
 					<div class="field">
-						<%= f.label :note %><br />
+						<%= f.label :note %> <br />
+						<span class='field_note'>(eg. Why would you recommend us?)</span><br />
 					    <%= f.text_field :note %>
 					</div>	
 
@@ -127,7 +131,6 @@ $(document).on('page:load', ready)
 			</div>
 		<% end %>
 		<% if @campaign.rewards.any? %>
-			<!-- <span class='content_bold'> REWARDS </span> -->
 			<% @campaign.rewards.each do |r| %>
 				<div class="campaign_reward clearfix">
 					<span class="reward_milestone"><%= r.milestone %></span>

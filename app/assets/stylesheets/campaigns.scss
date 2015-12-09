@@ -72,6 +72,12 @@ p {
 	}
 }
 
+.field {
+	.field_note {
+		color: #666;
+		font-size: 12px;
+	}
+}
 
 #campaign_hero {
 	position: relative;
@@ -120,8 +126,13 @@ p {
 		.time_section {
 	        display: inline-block;
 	        width: 75px;
-	        border-radius: 3px;
 	        font-size: 40px;
+	        text-align: center;
+	    }
+	    .time_desc {
+	    	display: inline-block;
+	    	width: 75px;
+	    	text-align: center;
 	    }
 	}
 }
@@ -316,6 +327,7 @@ p {
         display: -webkit-flex;
     	display: flex;
         justify-content: center;
+        flex-direction: column;	
         align-items: center;
         color: #333;
         font-family: 'Montserrat';
@@ -330,6 +342,10 @@ p {
         border-radius: 28px 10px 10px 28px;
         right: 100%;
         background-color: #71d03d;
+    }
+    .progess_goal {
+        font-size: 13px;
+        margin-top: -8px;
     }
 }
 
@@ -481,6 +497,9 @@ p {
 #leaderboard {
 	h1 {
 		padding-left: 43px;
+	}
+	.leaderboard_summary p {
+		font-size: 14px;
 	}
 }
 
