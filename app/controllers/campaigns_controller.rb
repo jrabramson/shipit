@@ -1,6 +1,8 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_contact!, only: [:edit, :update, :destroy, :new, :create]
+
+
   require 'csv'
 
   	attr_accessor :progress
@@ -20,6 +22,7 @@ class CampaignsController < ApplicationController
     end
 
     def show
+      render('errors/not_found') unless @campaign
     end
 
     def csv
