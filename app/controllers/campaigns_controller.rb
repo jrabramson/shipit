@@ -21,7 +21,6 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    render('errors/not_found') unless @campaign
   end
 
   def csv
@@ -90,5 +89,5 @@ private
   def campaign_params
     params.require(:campaign).permit(:title, :details, :goal, :expiry, :hub, :token, :media, :icon, :video, :kind, :custom_path, rewards_attributes: [:id, :title, :note, :milestone, :icon, :description, :referree_name, :referree_email, :_destroy])
   end
-  
+
 end
