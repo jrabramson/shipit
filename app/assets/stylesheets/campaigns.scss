@@ -36,6 +36,7 @@ p {
     display: -ms-flexbox;
     display: -webkit-flex;
 	display: flex;
+	min-height: 400px;
 	&.block {
 		display: block;
 	}
@@ -123,22 +124,41 @@ p {
 		    letter-spacing: 3px;
 	        border-radius: 3px;
 		}
-		.time_section {
-	        display: inline-block;
-	        width: 75px;
-	        font-size: 40px;
-	        text-align: center;
-	    }
-	    .time_desc {
-	    	display: inline-block;
-	    	width: 75px;
-	    	text-align: center;
-	    }
 	}
 }
 
-#countdown {
-    margin-bottom: 0;
+.time_section {
+    display: inline-block;
+    width: 75px;
+    font-size: 40px;
+    text-align: center;
+}
+.time_desc {
+	display: inline-block;
+	width: 75px;
+	text-align: center;
+}
+
+.countdown {
+    margin: 0 0 11px 0;
+    &.client {
+    	text-align: center;
+    }
+    &:nth-of-type(1) {
+    	margin: 0 0 5px 0;
+    	.time_section {
+    		font-size: 40px;
+    	}
+    }
+    &:nth-of-type(2) {
+    	margin: 0 0 5px 0;
+    	.time_section {
+    		font-size: 30px;
+    	}
+    }
+    .time_section {
+    	font-size: 20px;
+    }
 }
 
 .hero_background {
@@ -592,13 +612,13 @@ p {
 		height: 45px;
 	}
 	.leaderboard_campaign {
-		margin-bottom: 26px;
+		margin-bottom: 24px;
 		font-size: 28px;
 		&:first-of-type {
 			font-size: 56px;
 		}
 		&:nth-of-type(2) {
-			font-size: 39px;
+			font-size: 40px;
 		}
 	}
 }

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create, :edit, :update, :destroy]
   get 'manage' => 'campaigns#manage'
   get 'explore' => 'campaigns#browse'
+  get ':client/leaderboard' => 'campaigns#client_leaderboard'
   get 'leaderboard' => 'campaigns#leaderboard'
   get 'csv' => 'campaigns#csv'
   resources :campaigns, param: :custom_path, path: '' do

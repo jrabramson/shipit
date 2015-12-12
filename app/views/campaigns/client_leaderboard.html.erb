@@ -1,0 +1,39 @@
+<div id='leaderboard' class='container clearfix block'>
+	<h1><%= @collection.first.hub.humanize %> Leaderboard</h1>
+	<div class='leaderboard_count'>
+		<% (1..@collection.count).each do |i| %>
+			<div class='leaderboard_campaign'>
+				<%= i %>
+			</div>
+		<% end %>
+	</div>
+	<div class='leaderboard_section right'>
+		<% @collection.each do |campaign| %>
+			<div class='leaderboard_campaign'>
+				<%= link_to campaign do %>
+					<%= image_tag(campaign.icon.url(:thumb)) %> 
+					<div class='leaderboard_meta clearfix'>
+						<span class='leaderboard_title'><%= campaign.custom_path.capitalize %></span>
+						<span class='leaderboard_refs'> <%= campaign.progress %> <%= 'Referral'.pluralize(campaign.progress) %> </span>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div class='leaderboard_section right'>  
+		<div class='leaderboard_campaign'>
+			<% @collection.each_with_index do |campaign, i| %>
+				<p class='countdown<%= i %> countdown client'></p>
+				<script type="text/javascript">
+					new Countdown({
+					    selector: '.countdown<%= i %>',
+					    msgPattern: "<div class='time_section'>{days}</div><div class='time_section'>{hours}</div><div class='time_section'>{minutes}</div><br/><div><div class='time_desc'>days</div><div class='time_desc'>hours</div> <div class='time_desc'>minutes</div></div>",
+					    dateStart: new Date(),
+					    dateEnd: new Date(Date.parse("<%= campaign.expiry %>"))
+					});
+				</script>
+			<% end %>
+		</div>	
+	</div>
+</div>
+	
