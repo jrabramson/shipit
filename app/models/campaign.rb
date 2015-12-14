@@ -46,6 +46,10 @@ class Campaign < ActiveRecord::Base
     visible.where(hub: client).sort_by(&:progress).reverse
   end
 
+  def self.customer
+    where(kind: 'Customer')
+  end
+
   Paperclip.interpolates :default_image_url do |attachment, style|
     ActionController::Base.helpers.asset_path('missing.gif')
   end
