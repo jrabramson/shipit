@@ -81,7 +81,7 @@ $(document).on('page:load', ready)
 		<div class='content_share'>
 		<a target="_blank" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=<%=u campaign_url(@campaign) %>&t=<%= @campaign.title %>','name','width=600,height=400')"><i class='fa fa-facebook-square'></i> <span>Share</span></a>
 		<a target="_blank" onclick="window.open('http://twitter.com/intent/tweet?status=<%= @campaign.title %>+<%= campaign_url(@campaign) %>','name','width=600,height=400')"><i class='fa fa-twitter-square'></i> <span>Tweet</span></a>
-		<a target="_blank" onclick="window.open('http://www.linkedin.com/content_shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>','name','width=600,height=400')"><i class='fa fa-linkedin-square'></i> Share</a>
+		<a target="_blank" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=<%= campaign_url(@campaign) %>&title=<%= @campaign.title %>','name','width=600,height=400')"><i class='fa fa-linkedin-square'></i> Share</a>
 		</div>
 		<% unless @campaign.expiry.past? %>
 			<div class='campaign_refs'>
