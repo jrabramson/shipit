@@ -36,9 +36,9 @@ class Campaign < ActiveRecord::Base
 
   def self.typed_collection
     {
-        "AE / RSM": Campaign.visible.where(kind: 'AE / RSM').sort_by(&:progress).reverse,
-        "SDR": Campaign.visible.where(kind: 'SDR').sort_by(&:progress).reverse,
-        "Marketing": Campaign.visible.where(kind: 'Marketing').sort_by(&:progress).reverse
+        "AE / RSM": Campaign.where(kind: 'AE / RSM').sort_by(&:progress).reverse,
+        "SDR": Campaign.where(kind: 'SDR').sort_by(&:progress).reverse,
+        "Marketing": Campaign.where(kind: 'Marketing').sort_by(&:progress).reverse
     }
   end
 
