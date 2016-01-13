@@ -63,7 +63,7 @@ this.CampaignRefs =  React.createClass({
     refs = this.props.refs;
     return <div className='campaign_refs'>
       <div className='ref_info ref_header'>Contact</div>
-      <div className='ref_info ref_header'>Note</div>
+      <div className='ref_info ref_header'>Info</div>
       <div className='ref_info ref_header'>Referree</div>
       <div className='ref_info ref_header'></div>
       <hr />
@@ -72,7 +72,7 @@ this.CampaignRefs =  React.createClass({
 
         return <div key={ref.id} className='ref_row' id={'ref' + ref.id}>
           <div className='ref_info'>{ref.first_name} {ref.last_name}<br/>{ref.email}<br/>{ref.company}</div>
-          <div className='ref_info'>{ref.note}</div>
+          <div className='ref_info'>{ref.note} <br /> Phone: {ref.phone}</div>
           <div className='ref_info'>{ref.referree_name}<br/>{ref.referree_email}<br/>{created_at.toDateString()}</div>
           <div className='ref_info'>
             <img className='ref_push' src='/assets/api-icon.png' onClick={() => this._pushRef(ref.id)}/>

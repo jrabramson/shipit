@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125041442) do
+ActiveRecord::Schema.define(version: 20160113195430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,9 +111,10 @@ ActiveRecord::Schema.define(version: 20151125041442) do
     t.string   "referree_email"
     t.string   "company"
     t.string   "note"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "campaign_id"
+    t.string   "phone",          default: ""
   end
 
   add_index "referrals", ["campaign_id"], name: "index_referrals_on_campaign_id", using: :btree
